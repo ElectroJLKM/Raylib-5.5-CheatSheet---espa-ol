@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>raylib - cheatsheet (español)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="title" content="raylib - cheatsheet (español)">
+        <meta name="description" content="raylib es una biblioteca simple y fácil de usar para disfrutar la programación de videojuegos. No te pierdas las últimas funciones añadidas a raylib... consulta la cheatsheet de raylib">
+        <meta name="keywords" content="raylib, videojuegos, programación, C, C++, biblioteca, aprender, estudiar, simple, fácil, gratis, código abierto, raysan, español">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Open Graph metatags for sharing -->
+        <meta property="og:title" content="raylib - cheatsheet (español)">
+        <meta property="og:image" content="https://www.raylib.com/common/img/raylib_logo_card.png">
+        <meta property="og:url" content="https://www.raylib.com">
+        <meta property="og:site_name" content="raylib">
+        <meta property="og:description" content="Cheatsheet de raylib con todos los comentarios traducidos al español">
+
+        <!-- hightlight.js - Syntax highlighting for the Web -->
+        <link rel="stylesheet" href="raylib%20-%20cheatsheet_archivos/docco.min.css">
+        <script src="raylib%20-%20cheatsheet_archivos/highlight.min.js"></script>
+
+        <style type="text/css">
+         @font-face {
+             font-family: 'grixel_acme_7_wide_xtnd';
+             src: url('../common/font/acme_7_wide_xtnd.eot');
+             src: url('../common/font/acme_7_wide_xtnd.eot?#iefix') format('embedded-opentype'),
+             url('../common/font/acme_7_wide_xtnd.woff') format('woff'),
+             url('../common/font/acme_7_wide_xtnd.ttf') format('truetype');
+             font-weight: normal;
+             font-style: normal;
+             font-size-adjust:0.49;
+         }
+         body{background-color:#f5f5f5;}
+
+         .eximage img{margin: 0 auto; border: 1px solid; border-color: black; width:770px; height:auto;}
+         p{font-family: grixel_acme_7_wide_xtnd, Courier New, Verdana, Arial; font-size:13px; line-height:24px;}
+         a{font-family: grixel_acme_7_wide_xtnd, Courier New, Verdana, Arial; font-size:13px; line-height:24px;}
+         pre code{font-family: Courier New; font-size:12px; width: auto!important; border: 1px solid; border-color:#b0b0b0; width:758px; height:auto; }
+         .exdownbtn{
+             width:250px; height:30px; float:left; position: relative; cursor:pointer; font-weight:bold; font-size:10px;
+             line-height:30px; text-align: center; border-width:5px; background-color:#e1e1e1; color:#5c5a5a;
+             border:4px solid #898888; font-family: grixel_acme_7_wide_xtnd, Courier New, Verdana, Arial;
+         }
+         .exdownbtn:hover{background-color:#f0d6d6; color:#c55757; border:4px solid #e66666;}
+         #core pre code{border:10px solid; border-color:#888888; background-color:#dbdbe1; }
+         #shapes pre code{border:10px solid; border-color:#e66666; background-color:#e9d0d6; }
+         #textures pre code{border:10px solid; border-color:#75a06d; background-color:#c3e4bf; }
+         #text pre code{border:10px solid; border-color:#52b296; background-color:#b9e9dd; }
+         #models pre code{border:10px solid; border-color:#5d9cbd; background-color:#b9d6e8; }
+         #audio pre code{border:10px solid; border-color:#d3b157; background-color:#e5d7ae; }
+         #structs pre code{border:10px solid; border-color:#d2c9c6; background-color:#f8f8ff;}
+         #colors pre code{border:10px solid; border-color:#c6d2c6; background-color:#e9f1f2;}
+
+         #logo{width:128px; height:128px; float:left; position:relative; background-image:url(../common/img/raylib_logo.png);}
+         #header{position:relative; height:110px; max-width: 1000px;}
+         #title, #plinks, #version{position:relative; float:left; margin:0px; margin-left:10px; margin-top:10px;}
+         #plinks{color: gray;}
+         #plinks a, #copyright a{color: gray; text-decoration:none;}
+         #plinks a:hover{color: black;}
+         #version {margin-top: 23px; max-width:500px;}
+         #pcore{margin-bottom:-12px; margin-left:12px; color:#5c5a5a;}
+         #pshapes{margin-bottom:-12px; margin-left:12px; color:#c55757;}
+         #ptextures{margin-bottom:-12px; margin-left:12px; color:#60815a;}
+         #ptext{margin-bottom:-12px; margin-left:12px; color:#377764;}
+         #pmodels{margin-bottom:-12px; margin-left:12px; color:#417794;}
+         #paudio{margin-bottom:-12px; margin-left:12px; color:#8c7539;}
+         #pstructs{margin-bottom:-12px; margin-left:12px; color:#bcbccd;}
+         #pcolors{margin-bottom:-12px; margin-left:12px; color:#bcbccd;}
+
+         #fullgroup{
+             display: grid;
+             grid-column-gap: 20px;
+             grid-template-columns: auto auto;
+         }
+
+         #copyright { display: flex; align-items: center; justify-content: flex-begin; text-align: left; flex-wrap: wrap; }
+         #copyright img { vertical-align: middle; margin-right: 10px; }
+         #copyright p{color:#8b8b8b; font-size:10px}
+         #copyright a:hover{color:black;}
+
+         #downpdf{text-decoration: none;color:#aaaaaa;}
+         #downpdf:hover{color:#444;}
+
+         #fulldata p a {color:#0eefff; text-decoration: none;}
+         
+         /* Estilos adicionales para mejorar la legibilidad */
+         .translation-note {
+             background-color: #fff3cd;
+             border-left: 4px solid #ffc107;
+             padding: 10px;
+             margin: 10px 0;
+             font-size: 12px;
+             color: #856404;
+         }
+
+        /* for the tired programmers at night */
+        .darkmode{background-color:#1e1e1e; color:#e1e1e1;}
+        .darkmode a{color:#e1e1e1;}
+        .darkmode #header{background-color:#1e1e1e; color:#e1e1e1;}
+        .darkmode #title{color:#e1e1e1;}
+        .darkmode #plinks{color:#e1e1e1;}
+        .darkmode #plinks a{color:#e1e1e1;}
+        .darkmode #plinks a:hover{color:#e1e1e1;}
+        .darkmode #version{color:#e1e1e1;}
+        .darkmode #pcore{color:#e1e1e1;}
+        .darkmode #pshapes{color:#e1e1e1;}
+        .darkmode #ptextures{color:#e1e1e1;}
+        .darkmode #ptext{color:#e1e1e1;}
+        .darkmode #pmodels{color:#e1e1e1;}
+        .darkmode #paudio{color:#e1e1e1;}
+        .darkmode #pstructs{color:#e1e1e1;}
+        .darkmode #pcolors{color:#e1e1e1;}
+
+         @media screen and (max-width: 1550px) {
+            #fullgroup {
+                grid-template-columns: auto;
+            }
+
+            .leftgroup, .rightgroup {
+                overflow-x: auto;
+            }
+         }
+        </style>
+
+        <script type="text/javascript">
+         document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('pre code').forEach(function(e) {
+                hljs.highlightBlock(e);
+            });
+         });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("darkmode");
+        }
+
+        </script>
+    </head>
+
+    <body>
+        <div id="header">
+            <a id="logo" href="https://www.raylib.com/index.html"></a>
+            <p id="title">A simple and easy-to-use library to enjoy videogames programming</p>
+            <p id="plinks">[<a href="https://discord.gg/raylib">raylib Discord server</a>][<a href="https://github.com/raysan5/raylib">github.com/raysan5/raylib</a>][<a href="https://github.com/raysan5/raylib/blob/master/src/raylib.h">raylib.h</a>]</p>
+            <p></p>
+            <p id="version">v5.5 quick reference card - <strong style="color:#c55757;">ESPAÑOL</strong> [<a id="downpdf" href="#" onclick="alert('Versión PDF con colores disponible próximamente'); return false;">download as PDF</a>] [<a href="#" onclick="toggleDarkMode(); return false;">🌙 Modo oscuro</a>]</p>
+        </div>
+        <br>
+        <div class="translation-note">
+            ⚡ <strong>Traducción al español</strong> - Todos los comentarios de funciones han sido traducidos manteniendo los nombres originales de funciones, tipos y estructuras.
+            <br>🔵 <strong style="color:#888888;">rcore</strong> | 🔴 <strong style="color:#e66666;">rshapes</strong> | 🟢 <strong style="color:#75a06d;">rtextures</strong> | 🟩 <strong style="color:#52b296;">rtext</strong> | 🔷 <strong style="color:#5d9cbd;">rmodels</strong> | 🟡 <strong style="color:#d3b157;">raudio</strong>
+        </div>
+        <div id="fulldata">
+            <!-- MÓDULO: rcore -->
+            <p id="pcore">módulo: rcore <a href="#pcore">→</a></p>
+            <div id="core"><pre><code class="cpp hljs ">
+    <span class="hljs-comment">// Funciones relacionadas con la ventana</span>
+    <span class="hljs-keyword">void</span> InitWindow(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *title);  <span class="hljs-comment">// Inicializa la ventana y el contexto OpenGL</span>
+    <span class="hljs-keyword">void</span> CloseWindow(<span class="hljs-keyword">void</span>);                                     <span class="hljs-comment">// Cierra la ventana y descarga el contexto OpenGL</span>
+    <span class="hljs-keyword">bool</span> WindowShouldClose(<span class="hljs-keyword">void</span>);                               <span class="hljs-comment">// Verifica si la aplicación debe cerrarse (se presionó KEY_ESCAPE o se hizo clic en el ícono de cerrar)</span>
+    <span class="hljs-keyword">bool</span> IsWindowReady(<span class="hljs-keyword">void</span>);                                   <span class="hljs-comment">// Verifica si la ventana se ha inicializado correctamente</span>
+    <span class="hljs-keyword">bool</span> IsWindowFullscreen(<span class="hljs-keyword">void</span>);                              <span class="hljs-comment">// Verifica si la ventana está actualmente en pantalla completa</span>
+    <span class="hljs-keyword">bool</span> IsWindowHidden(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Verifica si la ventana está actualmente oculta</span>
+    <span class="hljs-keyword">bool</span> IsWindowMinimized(<span class="hljs-keyword">void</span>);                               <span class="hljs-comment">// Verifica si la ventana está actualmente minimizada</span>
+    <span class="hljs-keyword">bool</span> IsWindowMaximized(<span class="hljs-keyword">void</span>);                               <span class="hljs-comment">// Verifica si la ventana está actualmente maximizada</span>
+    <span class="hljs-keyword">bool</span> IsWindowFocused(<span class="hljs-keyword">void</span>);                                 <span class="hljs-comment">// Verifica si la ventana está actualmente enfocada</span>
+    <span class="hljs-keyword">bool</span> IsWindowResized(<span class="hljs-keyword">void</span>);                                 <span class="hljs-comment">// Verifica si la ventana se ha redimensionado en el último fotograma</span>
+    <span class="hljs-keyword">bool</span> IsWindowState(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> flag);                      <span class="hljs-comment">// Verifica si una bandera específica de la ventana está habilitada</span>
+    <span class="hljs-keyword">void</span> SetWindowState(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> flags);                    <span class="hljs-comment">// Establece el estado de configuración de la ventana usando banderas</span>
+    <span class="hljs-keyword">void</span> ClearWindowState(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> flags);                  <span class="hljs-comment">// Limpia las banderas de estado de configuración de la ventana</span>
+    <span class="hljs-keyword">void</span> ToggleFullscreen(<span class="hljs-keyword">void</span>);                                <span class="hljs-comment">// Alterna el estado de la ventana: pantalla completa/ventaneada, redimensiona el monitor para que coincida con la resolución de la ventana</span>
+    <span class="hljs-keyword">void</span> ToggleBorderlessWindowed(<span class="hljs-keyword">void</span>);                        <span class="hljs-comment">// Alterna el estado de la ventana: ventana sin bordes, redimensiona la ventana para que coincida con la resolución del monitor</span>
+    <span class="hljs-keyword">void</span> MaximizeWindow(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Establece el estado de la ventana: maximizada, si es redimensionable</span>
+    <span class="hljs-keyword">void</span> MinimizeWindow(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Establece el estado de la ventana: minimizada, si es redimensionable</span>
+    <span class="hljs-keyword">void</span> RestoreWindow(<span class="hljs-keyword">void</span>);                                   <span class="hljs-comment">// Establece el estado de la ventana: no minimizada/maximizada</span>
+    <span class="hljs-keyword">void</span> SetWindowIcon(Image image);                            <span class="hljs-comment">// Establece el ícono de la ventana (imagen única, RGBA 32 bits)</span>
+    <span class="hljs-keyword">void</span> SetWindowIcons(Image *images, <span class="hljs-keyword">int</span> count);              <span class="hljs-comment">// Establece el ícono de la ventana (múltiples imágenes, RGBA 32 bits)</span>
+    <span class="hljs-keyword">void</span> SetWindowTitle(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *title);                     <span class="hljs-comment">// Establece el título de la ventana</span>
+    <span class="hljs-keyword">void</span> SetWindowPosition(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y);                       <span class="hljs-comment">// Establece la posición de la ventana en la pantalla</span>
+    <span class="hljs-keyword">void</span> SetWindowMonitor(<span class="hljs-keyword">int</span> monitor);                         <span class="hljs-comment">// Establece el monitor para la ventana actual</span>
+    <span class="hljs-keyword">void</span> SetWindowMinSize(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height);               <span class="hljs-comment">// Establece las dimensiones mínimas de la ventana (para FLAG_WINDOW_RESIZABLE)</span>
+    <span class="hljs-keyword">void</span> SetWindowMaxSize(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height);               <span class="hljs-comment">// Establece las dimensiones máximas de la ventana (para FLAG_WINDOW_RESIZABLE)</span>
+    <span class="hljs-keyword">void</span> SetWindowSize(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height);                  <span class="hljs-comment">// Establece las dimensiones de la ventana</span>
+    <span class="hljs-keyword">void</span> SetWindowOpacity(<span class="hljs-keyword">float</span> opacity);                       <span class="hljs-comment">// Establece la opacidad de la ventana [0.0f..1.0f]</span>
+    <span class="hljs-keyword">void</span> SetWindowFocused(<span class="hljs-keyword">void</span>);                                <span class="hljs-comment">// Establece el foco en la ventana</span>
+    <span class="hljs-keyword">void</span> *GetWindowHandle(<span class="hljs-keyword">void</span>);                                <span class="hljs-comment">// Obtiene el identificador nativo de la ventana</span>
+    <span class="hljs-keyword">int</span> GetScreenWidth(<span class="hljs-keyword">void</span>);                                   <span class="hljs-comment">// Obtiene el ancho actual de la pantalla</span>
+    <span class="hljs-keyword">int</span> GetScreenHeight(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Obtiene el alto actual de la pantalla</span>
+    <span class="hljs-keyword">int</span> GetRenderWidth(<span class="hljs-keyword">void</span>);                                   <span class="hljs-comment">// Obtiene el ancho de renderizado actual (considera HiDPI)</span>
+    <span class="hljs-keyword">int</span> GetRenderHeight(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Obtiene el alto de renderizado actual (considera HiDPI)</span>
+    <span class="hljs-keyword">int</span> GetMonitorCount(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Obtiene el número de monitores conectados</span>
+    <span class="hljs-keyword">int</span> GetCurrentMonitor(<span class="hljs-keyword">void</span>);                                <span class="hljs-comment">// Obtiene el monitor actual donde está colocada la ventana</span>
+    Vector2 GetMonitorPosition(<span class="hljs-keyword">int</span> monitor);                    <span class="hljs-comment">// Obtiene la posición del monitor especificado</span>
+    <span class="hljs-keyword">int</span> GetMonitorWidth(<span class="hljs-keyword">int</span> monitor);                           <span class="hljs-comment">// Obtiene el ancho del monitor especificado (modo de video actual usado por el monitor)</span>
+    <span class="hljs-keyword">int</span> GetMonitorHeight(<span class="hljs-keyword">int</span> monitor);                          <span class="hljs-comment">// Obtiene el alto del monitor especificado (modo de video actual usado por el monitor)</span>
+    <span class="hljs-keyword">int</span> GetMonitorPhysicalWidth(<span class="hljs-keyword">int</span> monitor);                   <span class="hljs-comment">// Obtiene el ancho físico del monitor especificado en milímetros</span>
+    <span class="hljs-keyword">int</span> GetMonitorPhysicalHeight(<span class="hljs-keyword">int</span> monitor);                  <span class="hljs-comment">// Obtiene el alto físico del monitor especificado en milímetros</span>
+    <span class="hljs-keyword">int</span> GetMonitorRefreshRate(<span class="hljs-keyword">int</span> monitor);                     <span class="hljs-comment">// Obtiene la tasa de refresco del monitor especificado</span>
+    Vector2 GetWindowPosition(<span class="hljs-keyword">void</span>);                            <span class="hljs-comment">// Obtiene la posición XY de la ventana en el monitor</span>
+    Vector2 GetWindowScaleDPI(<span class="hljs-keyword">void</span>);                            <span class="hljs-comment">// Obtiene el factor de escala DPI de la ventana</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetMonitorName(<span class="hljs-keyword">int</span> monitor);                    <span class="hljs-comment">// Obtiene el nombre legible, codificado en UTF-8, del monitor especificado</span>
+    <span class="hljs-keyword">void</span> SetClipboardText(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                    <span class="hljs-comment">// Establece el contenido de texto del portapapeles</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetClipboardText(<span class="hljs-keyword">void</span>);                         <span class="hljs-comment">// Obtiene el contenido de texto del portapapeles</span>
+    Image GetClipboardImage(<span class="hljs-keyword">void</span>);                              <span class="hljs-comment">// Obtiene la imagen del portapapeles</span>
+    <span class="hljs-keyword">void</span> EnableEventWaiting(<span class="hljs-keyword">void</span>);                              <span class="hljs-comment">// Habilita la espera de eventos en EndDrawing(), sin sondeo automático de eventos</span>
+    <span class="hljs-keyword">void</span> DisableEventWaiting(<span class="hljs-keyword">void</span>);                             <span class="hljs-comment">// Deshabilita la espera de eventos en EndDrawing(), sondeo automático de eventos</span>
+
+    <span class="hljs-comment">// Funciones relacionadas con el cursor</span>
+    <span class="hljs-keyword">void</span> ShowCursor(<span class="hljs-keyword">void</span>);                                      <span class="hljs-comment">// Muestra el cursor</span>
+    <span class="hljs-keyword">void</span> HideCursor(<span class="hljs-keyword">void</span>);                                      <span class="hljs-comment">// Oculta el cursor</span>
+    <span class="hljs-keyword">bool</span> IsCursorHidden(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Verifica si el cursor no está visible</span>
+    <span class="hljs-keyword">void</span> EnableCursor(<span class="hljs-keyword">void</span>);                                    <span class="hljs-comment">// Habilita el cursor (desbloquea el cursor)</span>
+    <span class="hljs-keyword">void</span> DisableCursor(<span class="hljs-keyword">void</span>);                                   <span class="hljs-comment">// Deshabilita el cursor (bloquea el cursor)</span>
+    <span class="hljs-keyword">bool</span> IsCursorOnScreen(<span class="hljs-keyword">void</span>);                                <span class="hljs-comment">// Verifica si el cursor está en la pantalla</span>
+
+    <span class="hljs-comment">// Funciones relacionadas con el dibujo</span>
+    <span class="hljs-keyword">void</span> ClearBackground(Color color);                          <span class="hljs-comment">// Establece el color de fondo (color de limpieza del framebuffer)</span>
+    <span class="hljs-keyword">void</span> BeginDrawing(<span class="hljs-keyword">void</span>);                                    <span class="hljs-comment">// Configura el lienzo (framebuffer) para comenzar a dibujar</span>
+    <span class="hljs-keyword">void</span> EndDrawing(<span class="hljs-keyword">void</span>);                                      <span class="hljs-comment">// Finaliza el dibujo en el lienzo e intercambia los búferes (doble búfer)</span>
+    <span class="hljs-keyword">void</span> BeginMode2D(Camera2D camera);                          <span class="hljs-comment">// Inicia el modo 2D con una cámara personalizada (2D)</span>
+    <span class="hljs-keyword">void</span> EndMode2D(<span class="hljs-keyword">void</span>);                                       <span class="hljs-comment">// Finaliza el modo 2D con cámara personalizada</span>
+    <span class="hljs-keyword">void</span> BeginMode3D(Camera3D camera);                          <span class="hljs-comment">// Inicia el modo 3D con una cámara personalizada (3D)</span>
+    <span class="hljs-keyword">void</span> EndMode3D(<span class="hljs-keyword">void</span>);                                       <span class="hljs-comment">// Finaliza el modo 3D y regresa al modo 2D ortográfico por defecto</span>
+    <span class="hljs-keyword">void</span> BeginTextureMode(RenderTexture2D target);              <span class="hljs-comment">// Inicia el dibujo en una textura de renderizado</span>
+    <span class="hljs-keyword">void</span> EndTextureMode(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Finaliza el dibujo en la textura de renderizado</span>
+    <span class="hljs-keyword">void</span> BeginShaderMode(Shader shader);                        <span class="hljs-comment">// Inicia el dibujo con un shader personalizado</span>
+    <span class="hljs-keyword">void</span> EndShaderMode(<span class="hljs-keyword">void</span>);                                   <span class="hljs-comment">// Finaliza el dibujo con shader personalizado (usa el shader por defecto)</span>
+    <span class="hljs-keyword">void</span> BeginBlendMode(<span class="hljs-keyword">int</span> mode);                              <span class="hljs-comment">// Inicia el modo de mezcla (alpha, aditiva, multiplicada, sustractiva, personalizada)</span>
+    <span class="hljs-keyword">void</span> EndBlendMode(<span class="hljs-keyword">void</span>);                                    <span class="hljs-comment">// Finaliza el modo de mezcla (restablece al predeterminado: mezcla alfa)</span>
+    <span class="hljs-keyword">void</span> BeginScissorMode(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height); <span class="hljs-comment">// Inicia el modo de recorte (define el área de pantalla para el dibujo siguiente)</span>
+    <span class="hljs-keyword">void</span> EndScissorMode(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Finaliza el modo de recorte</span>
+    <span class="hljs-keyword">void</span> BeginVrStereoMode(VrStereoConfig config);              <span class="hljs-comment">// Inicia el renderizado estéreo (requiere simulador de realidad virtual)</span>
+    <span class="hljs-keyword">void</span> EndVrStereoMode(<span class="hljs-keyword">void</span>);                                 <span class="hljs-comment">// Finaliza el renderizado estéreo (requiere simulador de realidad virtual)</span>
+
+    <span class="hljs-comment">// Funciones de configuración estéreo para el simulador de realidad virtual</span>
+    VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device);     <span class="hljs-comment">// Carga la configuración estéreo para los parámetros del dispositivo de realidad virtual</span>
+    <span class="hljs-keyword">void</span> UnloadVrStereoConfig(VrStereoConfig config);           <span class="hljs-comment">// Descarga la configuración estéreo de realidad virtual</span>
+
+    <span class="hljs-comment">// Funciones de gestión de shaders</span>
+    <span class="hljs-comment">// NOTA: La funcionalidad de shaders no está disponible en OpenGL 1.1</span>
+    Shader LoadShader(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *vsFileName, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fsFileName);   <span class="hljs-comment">// Carga un shader desde archivos y asigna ubicaciones por defecto</span>
+    Shader LoadShaderFromMemory(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *vsCode, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fsCode); <span class="hljs-comment">// Carga un shader desde cadenas de código y asigna ubicaciones por defecto</span>
+    <span class="hljs-keyword">bool</span> IsShaderValid(Shader shader);                                   <span class="hljs-comment">// Verifica si un shader es válido (cargado en la GPU)</span>
+    <span class="hljs-keyword">int</span> GetShaderLocation(Shader shader, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *uniformName);       <span class="hljs-comment">// Obtiene la ubicación de un uniforme del shader</span>
+    <span class="hljs-keyword">int</span> GetShaderLocationAttrib(Shader shader, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *attribName);  <span class="hljs-comment">// Obtiene la ubicación de un atributo del shader</span>
+    <span class="hljs-keyword">void</span> SetShaderValue(Shader shader, <span class="hljs-keyword">int</span> locIndex, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *value, <span class="hljs-keyword">int</span> uniformType);               <span class="hljs-comment">// Establece el valor de un uniforme del shader</span>
+    <span class="hljs-keyword">void</span> SetShaderValueV(Shader shader, <span class="hljs-keyword">int</span> locIndex, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *value, <span class="hljs-keyword">int</span> uniformType, <span class="hljs-keyword">int</span> count);   <span class="hljs-comment">// Establece un vector como valor de uniforme del shader</span>
+    <span class="hljs-keyword">void</span> SetShaderValueMatrix(Shader shader, <span class="hljs-keyword">int</span> locIndex, Matrix mat);         <span class="hljs-comment">// Establece un valor de uniforme del shader (matriz 4x4)</span>
+    <span class="hljs-keyword">void</span> SetShaderValueTexture(Shader shader, <span class="hljs-keyword">int</span> locIndex, Texture2D texture); <span class="hljs-comment">// Establece un valor de uniforme del shader para textura (sampler2d)</span>
+    <span class="hljs-keyword">void</span> UnloadShader(Shader shader);                                    <span class="hljs-comment">// Descarga el shader de la memoria de la GPU (VRAM)</span>
+
+    <span class="hljs-comment">// Funciones relacionadas con el espacio de pantalla</span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> GetMouseRay GetScreenToWorldRay     <span class="hljs-comment">// Parche de compatibilidad para versiones anteriores de raylib</span></span>
+    Ray GetScreenToWorldRay(Vector2 position, Camera camera);         <span class="hljs-comment">// Obtiene un rayo trazado desde la posición en pantalla (ej. mouse)</span>
+    Ray GetScreenToWorldRayEx(Vector2 position, Camera camera, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height); <span class="hljs-comment">// Obtiene un rayo desde la posición en pantalla en un viewport</span>
+    Vector2 GetWorldToScreen(Vector3 position, Camera camera);        <span class="hljs-comment">// Obtiene la posición en espacio de pantalla para una posición en espacio mundial 3D</span>
+    Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height); <span class="hljs-comment">// Obtiene la posición para una posición en espacio mundial 3D</span>
+    Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera);    <span class="hljs-comment">// Obtiene la posición en espacio de pantalla para una posición en espacio mundial de cámara 2D</span>
+    Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera);    <span class="hljs-comment">// Obtiene la posición en espacio mundial para una posición en espacio de pantalla de cámara 2D</span>
+    Matrix GetCameraMatrix(Camera camera);                            <span class="hljs-comment">// Obtiene la matriz de transformación de la cámara (matriz de vista)</span>
+    Matrix GetCameraMatrix2D(Camera2D camera);                        <span class="hljs-comment">// Obtiene la matriz de transformación de la cámara 2D</span>
+
+    <span class="hljs-comment">// Funciones relacionadas con el tiempo</span>
+    <span class="hljs-keyword">void</span> SetTargetFPS(<span class="hljs-keyword">int</span> fps);                                 <span class="hljs-comment">// Establece el FPS objetivo (máximo)</span>
+    <span class="hljs-keyword">float</span> GetFrameTime(<span class="hljs-keyword">void</span>);                                   <span class="hljs-comment">// Obtiene el tiempo en segundos del último fotograma dibujado (tiempo delta)</span>
+    <span class="hljs-keyword">double</span> GetTime(<span class="hljs-keyword">void</span>);                                       <span class="hljs-comment">// Obtiene el tiempo transcurrido en segundos desde InitWindow()</span>
+    <span class="hljs-keyword">int</span> GetFPS(<span class="hljs-keyword">void</span>);                                           <span class="hljs-comment">// Obtiene el FPS actual</span>
+
+    <span class="hljs-comment">// Funciones de control de fotogramas personalizadas</span>
+    <span class="hljs-comment">// NOTA: Estas funciones están destinadas a usuarios avanzados que desean control total sobre el procesamiento de fotogramas</span>
+    <span class="hljs-comment">// Por defecto, EndDrawing() hace este trabajo: dibuja todo + SwapScreenBuffer() + gestiona el tiempo de fotograma + PollInputEvents()</span>
+    <span class="hljs-comment">// Para evitar ese comportamiento y controlar los procesos de fotograma manualmente, habilite en config.h: SUPPORT_CUSTOM_FRAME_CONTROL</span>
+    <span class="hljs-keyword">void</span> SwapScreenBuffer(<span class="hljs-keyword">void</span>);                                <span class="hljs-comment">// Intercambia el búfer trasero con el búfer delantero (dibujo en pantalla)</span>
+    <span class="hljs-keyword">void</span> PollInputEvents(<span class="hljs-keyword">void</span>);                                 <span class="hljs-comment">// Registra todos los eventos de entrada</span>
+    <span class="hljs-keyword">void</span> WaitTime(<span class="hljs-keyword">double</span> seconds);                              <span class="hljs-comment">// Espera un tiempo determinado (detiene la ejecución del programa)</span>
+
+    <span class="hljs-comment">// Funciones de generación de valores aleatorios</span>
+    <span class="hljs-keyword">void</span> SetRandomSeed(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> seed);                      <span class="hljs-comment">// Establece la semilla para el generador de números aleatorios</span>
+    <span class="hljs-keyword">int</span> GetRandomValue(<span class="hljs-keyword">int</span> min, <span class="hljs-keyword">int</span> max);                       <span class="hljs-comment">// Obtiene un valor aleatorio entre min y max (ambos incluidos)</span>
+    <span class="hljs-keyword">int</span> *LoadRandomSequence(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> count, <span class="hljs-keyword">int</span> min, <span class="hljs-keyword">int</span> max); <span class="hljs-comment">// Carga una secuencia de valores aleatorios, sin valores repetidos</span>
+    <span class="hljs-keyword">void</span> UnloadRandomSequence(<span class="hljs-keyword">int</span> *sequence);                   <span class="hljs-comment">// Descarga la secuencia de valores aleatorios</span>
+
+    <span class="hljs-comment">// Funciones misceláneas</span>
+    <span class="hljs-keyword">void</span> TakeScreenshot(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                  <span class="hljs-comment">// Toma una captura de pantalla de la pantalla actual (la extensión del archivo define el formato)</span>
+    <span class="hljs-keyword">void</span> SetConfigFlags(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> flags);                    <span class="hljs-comment">// Configura las banderas de inicialización (ver FLAGS)</span>
+    <span class="hljs-keyword">void</span> OpenURL(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *url);                              <span class="hljs-comment">// Abre una URL con el navegador del sistema por defecto (si está disponible)</span>
+
+    <span class="hljs-comment">// NOTA: Las siguientes funciones están implementadas en el módulo [utils]</span>
+    <span class="hljs-comment">//------------------------------------------------------------------</span>
+    <span class="hljs-keyword">void</span> TraceLog(<span class="hljs-keyword">int</span> logLevel, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, ...);         <span class="hljs-comment">// Muestra mensajes de registro (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)</span>
+    <span class="hljs-keyword">void</span> SetTraceLogLevel(<span class="hljs-keyword">int</span> logLevel);                        <span class="hljs-comment">// Establece el nivel de registro mínimo actual</span>
+    <span class="hljs-keyword">void</span> *MemAlloc(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> size);                          <span class="hljs-comment">// Asignador de memoria interno</span>
+    <span class="hljs-keyword">void</span> *MemRealloc(<span class="hljs-keyword">void</span> *ptr, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> size);             <span class="hljs-comment">// Reasignador de memoria interno</span>
+    <span class="hljs-keyword">void</span> MemFree(<span class="hljs-keyword">void</span> *ptr);                                    <span class="hljs-comment">// Liberador de memoria interno</span>
+
+    <span class="hljs-comment">// Establecer callbacks personalizados</span>
+    <span class="hljs-comment">// ADVERTENCIA: La configuración de callbacks está destinada a usuarios avanzados</span>
+    <span class="hljs-keyword">void</span> SetTraceLogCallback(TraceLogCallback callback);         <span class="hljs-comment">// Establece un callback personalizado para el registro</span>
+    <span class="hljs-keyword">void</span> SetLoadFileDataCallback(LoadFileDataCallback callback); <span class="hljs-comment">// Establece un cargador personalizado de datos binarios de archivo</span>
+    <span class="hljs-keyword">void</span> SetSaveFileDataCallback(SaveFileDataCallback callback); <span class="hljs-comment">// Establece un guardador personalizado de datos binarios de archivo</span>
+    <span class="hljs-keyword">void</span> SetLoadFileTextCallback(LoadFileTextCallback callback); <span class="hljs-comment">// Establece un cargador personalizado de datos de texto de archivo</span>
+    <span class="hljs-keyword">void</span> SetSaveFileTextCallback(SaveFileTextCallback callback); <span class="hljs-comment">// Establece un guardador personalizado de datos de texto de archivo</span>
+
+    <span class="hljs-comment">// Funciones de gestión de archivos</span>
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *LoadFileData(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName, <span class="hljs-keyword">int</span> *dataSize); <span class="hljs-comment">// Carga datos de archivo como un arreglo de bytes (lectura)</span>
+    <span class="hljs-keyword">void</span> UnloadFileData(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *data);                   <span class="hljs-comment">// Descarga los datos de archivo asignados por LoadFileData()</span>
+    <span class="hljs-keyword">bool</span> SaveFileData(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName, <span class="hljs-keyword">void</span> *data, <span class="hljs-keyword">int</span> dataSize); <span class="hljs-comment">// Guarda datos en un archivo desde un arreglo de bytes (escritura), devuelve true en éxito</span>
+    <span class="hljs-keyword">bool</span> ExportDataAsCode(<span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *data, <span class="hljs-keyword">int</span> dataSize, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName); <span class="hljs-comment">// Exporta datos como código (.h), devuelve true en éxito</span>
+    <span class="hljs-keyword">char</span> *LoadFileText(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                   <span class="hljs-comment">// Carga datos de texto desde un archivo (lectura), devuelve una cadena terminada en '\0'</span>
+    <span class="hljs-keyword">void</span> UnloadFileText(<span class="hljs-keyword">char</span> *text);                            <span class="hljs-comment">// Descarga los datos de texto de archivo asignados por LoadFileText()</span>
+    <span class="hljs-keyword">bool</span> SaveFileText(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName, <span class="hljs-keyword">char</span> *text);        <span class="hljs-comment">// Guarda datos de texto en un archivo (escritura), la cadena debe terminar en '\0', devuelve true en éxito</span>
+    <span class="hljs-comment">//------------------------------------------------------------------</span>
+
+    <span class="hljs-comment">// Funciones del sistema de archivos</span>
+    <span class="hljs-keyword">bool</span> FileExists(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                      <span class="hljs-comment">// Verifica si un archivo existe</span>
+    <span class="hljs-keyword">bool</span> DirectoryExists(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *dirPath);                  <span class="hljs-comment">// Verifica si una ruta de directorio existe</span>
+    <span class="hljs-keyword">bool</span> IsFileExtension(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *ext); <span class="hljs-comment">// Verifica la extensión del archivo (incluye el punto: .png, .wav)</span>
+    <span class="hljs-keyword">int</span> GetFileLength(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                    <span class="hljs-comment">// Obtiene la longitud del archivo en bytes (NOTA: GetFileSize() entra en conflicto con windows.h)</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetFileExtension(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);         <span class="hljs-comment">// Obtiene un puntero a la extensión de una cadena de nombre de archivo (incluye el punto: '.png')</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetFileName(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *filePath);              <span class="hljs-comment">// Obtiene un puntero al nombre del archivo de una cadena de ruta</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetFileNameWithoutExt(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *filePath);    <span class="hljs-comment">// Obtiene la cadena del nombre del archivo sin extensión (usa cadena estática)</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetDirectoryPath(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *filePath);         <span class="hljs-comment">// Obtiene la ruta completa para un nombre de archivo con ruta (usa cadena estática)</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetPrevDirectoryPath(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *dirPath);      <span class="hljs-comment">// Obtiene la ruta del directorio anterior para una ruta dada (usa cadena estática)</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetWorkingDirectory(<span class="hljs-keyword">void</span>);                      <span class="hljs-comment">// Obtiene el directorio de trabajo actual (usa cadena estática)</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetApplicationDirectory(<span class="hljs-keyword">void</span>);                  <span class="hljs-comment">// Obtiene el directorio de la aplicación en ejecución (usa cadena estática)</span>
+    <span class="hljs-keyword">int</span> MakeDirectory(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *dirPath);                     <span class="hljs-comment">// Crea directorios (incluyendo la ruta completa solicitada), devuelve 0 en éxito</span>
+    <span class="hljs-keyword">bool</span> ChangeDirectory(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *dir);                      <span class="hljs-comment">// Cambia el directorio de trabajo, devuelve true en éxito</span>
+    <span class="hljs-keyword">bool</span> IsPathFile(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *path);                          <span class="hljs-comment">// Verifica si una ruta dada es un archivo o un directorio</span>
+    <span class="hljs-keyword">bool</span> IsFileNameValid(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                 <span class="hljs-comment">// Verifica si el nombre de archivo es válido para la plataforma/SO</span>
+    FilePathList LoadDirectoryFiles(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *dirPath);       <span class="hljs-comment">// Carga las rutas de archivos de un directorio</span>
+    FilePathList LoadDirectoryFilesEx(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *basePath, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *filter, <span class="hljs-keyword">bool</span> scanSubdirs); <span class="hljs-comment">// Carga rutas de archivos con filtro de extensión y escaneo recursivo de directorios. Use 'DIR' en la cadena de filtro para incluir directorios en el resultado</span>
+    <span class="hljs-keyword">void</span> UnloadDirectoryFiles(FilePathList files);              <span class="hljs-comment">// Descarga las rutas de archivos</span>
+    <span class="hljs-keyword">bool</span> IsFileDropped(<span class="hljs-keyword">void</span>);                                   <span class="hljs-comment">// Verifica si se ha soltado un archivo en la ventana</span>
+    FilePathList LoadDroppedFiles(<span class="hljs-keyword">void</span>);                        <span class="hljs-comment">// Carga las rutas de archivos soltados</span>
+    <span class="hljs-keyword">void</span> UnloadDroppedFiles(FilePathList files);                <span class="hljs-comment">// Descarga las rutas de archivos soltados</span>
+    <span class="hljs-keyword">long</span> GetFileModTime(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                  <span class="hljs-comment">// Obtiene la hora de modificación del archivo (última hora de escritura)</span>
+
+    <span class="hljs-comment">// Funcionalidad de compresión/codificación</span>
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *CompressData(<span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *data, <span class="hljs-keyword">int</span> dataSize, <span class="hljs-keyword">int</span> *compDataSize);        <span class="hljs-comment">// Comprime datos (algoritmo DEFLATE), la memoria debe liberarse con MemFree()</span>
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *DecompressData(<span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *compData, <span class="hljs-keyword">int</span> compDataSize, <span class="hljs-keyword">int</span> *dataSize);  <span class="hljs-comment">// Descomprime datos (algoritmo DEFLATE), la memoria debe liberarse con MemFree()</span>
+    <span class="hljs-keyword">char</span> *EncodeDataBase64(<span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *data, <span class="hljs-keyword">int</span> dataSize, <span class="hljs-keyword">int</span> *outputSize);               <span class="hljs-comment">// Codifica datos a una cadena Base64, la memoria debe liberarse con MemFree()</span>
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *DecodeDataBase64(<span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *data, <span class="hljs-keyword">int</span> *outputSize);                    <span class="hljs-comment">// Decodifica datos de una cadena Base64, la memoria debe liberarse con MemFree()</span>
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> ComputeCRC32(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *data, <span class="hljs-keyword">int</span> dataSize);     <span class="hljs-comment">// Calcula el código hash CRC32</span>
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *ComputeMD5(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *data, <span class="hljs-keyword">int</span> dataSize);      <span class="hljs-comment">// Calcula el código hash MD5, devuelve un arreglo estático int[4] (16 bytes)</span>
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *ComputeSHA1(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *data, <span class="hljs-keyword">int</span> dataSize);      <span class="hljs-comment">// Calcula el código hash SHA1, devuelve un arreglo estático int[5] (20 bytes)</span>
+
+    <span class="hljs-comment">// Funcionalidad de eventos de automatización</span>
+    AutomationEventList LoadAutomationEventList(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                <span class="hljs-comment">// Carga una lista de eventos de automatización desde un archivo, NULL para lista vacía, capacidad = MAX_AUTOMATION_EVENTS</span>
+    <span class="hljs-keyword">void</span> UnloadAutomationEventList(AutomationEventList <span class="hljs-built_in">list</span>);                         <span class="hljs-comment">// Descarga una lista de eventos de automatización desde un archivo</span>
+    <span class="hljs-keyword">bool</span> ExportAutomationEventList(AutomationEventList <span class="hljs-built_in">list</span>, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);   <span class="hljs-comment">// Exporta una lista de eventos de automatización como archivo de texto</span>
+    <span class="hljs-keyword">void</span> SetAutomationEventList(AutomationEventList *<span class="hljs-built_in">list</span>);                           <span class="hljs-comment">// Establece la lista de eventos de automatización para grabar</span>
+    <span class="hljs-keyword">void</span> SetAutomationEventBaseFrame(<span class="hljs-keyword">int</span> frame);                                      <span class="hljs-comment">// Establece el fotograma base interno del evento de automatización para comenzar a grabar</span>
+    <span class="hljs-keyword">void</span> StartAutomationEventRecording(<span class="hljs-keyword">void</span>);                                         <span class="hljs-comment">// Comienza a grabar eventos de automatización (AutomationEventList debe estar establecida)</span>
+    <span class="hljs-keyword">void</span> StopAutomationEventRecording(<span class="hljs-keyword">void</span>);                                          <span class="hljs-comment">// Detiene la grabación de eventos de automatización</span>
+    <span class="hljs-keyword">void</span> PlayAutomationEvent(AutomationEvent event);                                  <span class="hljs-comment">// Reproduce un evento de automatización grabado</span>
+
+    <span class="hljs-comment">//------------------------------------------------------------------------------------</span>
+    <span class="hljs-comment">// Funciones de manejo de entrada (Módulo: core)</span>
+    <span class="hljs-comment">//------------------------------------------------------------------------------------</span>
+
+    <span class="hljs-comment">// Funciones relacionadas con la entrada: teclado</span>
+    <span class="hljs-keyword">bool</span> IsKeyPressed(<span class="hljs-keyword">int</span> key);                             <span class="hljs-comment">// Verifica si una tecla ha sido presionada una vez</span>
+    <span class="hljs-keyword">bool</span> IsKeyPressedRepeat(<span class="hljs-keyword">int</span> key);                       <span class="hljs-comment">// Verifica si una tecla ha sido presionada nuevamente</span>
+    <span class="hljs-keyword">bool</span> IsKeyDown(<span class="hljs-keyword">int</span> key);                                <span class="hljs-comment">// Verifica si una tecla está siendo presionada</span>
+    <span class="hljs-keyword">bool</span> IsKeyReleased(<span class="hljs-keyword">int</span> key);                            <span class="hljs-comment">// Verifica si una tecla ha sido liberada una vez</span>
+    <span class="hljs-keyword">bool</span> IsKeyUp(<span class="hljs-keyword">int</span> key);                                  <span class="hljs-comment">// Verifica si una tecla NO está siendo presionada</span>
+    <span class="hljs-keyword">int</span> GetKeyPressed(<span class="hljs-keyword">void</span>);                                <span class="hljs-comment">// Obtiene la tecla presionada (código de tecla), llámelo múltiples veces para las teclas en cola, devuelve 0 cuando la cola está vacía</span>
+    <span class="hljs-keyword">int</span> GetCharPressed(<span class="hljs-keyword">void</span>);                               <span class="hljs-comment">// Obtiene el carácter presionado (unicode), llámelo múltiples veces para los caracteres en cola, devuelve 0 cuando la cola está vacía</span>
+    <span class="hljs-keyword">void</span> SetExitKey(<span class="hljs-keyword">int</span> key);                               <span class="hljs-comment">// Establece una tecla personalizada para salir del programa (por defecto es ESC)</span>
+
+    <span class="hljs-comment">// Funciones relacionadas con la entrada: gamepads</span>
+    <span class="hljs-keyword">bool</span> IsGamepadAvailable(<span class="hljs-keyword">int</span> gamepad);                                        <span class="hljs-comment">// Verifica si un gamepad está disponible</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *GetGamepadName(<span class="hljs-keyword">int</span> gamepad);                                     <span class="hljs-comment">// Obtiene el nombre interno del gamepad</span>
+    <span class="hljs-keyword">bool</span> IsGamepadButtonPressed(<span class="hljs-keyword">int</span> gamepad, <span class="hljs-keyword">int</span> button);                        <span class="hljs-comment">// Verifica si un botón del gamepad ha sido presionado una vez</span>
+    <span class="hljs-keyword">bool</span> IsGamepadButtonDown(<span class="hljs-keyword">int</span> gamepad, <span class="hljs-keyword">int</span> button);                           <span class="hljs-comment">// Verifica si un botón del gamepad está siendo presionado</span>
+    <span class="hljs-keyword">bool</span> IsGamepadButtonReleased(<span class="hljs-keyword">int</span> gamepad, <span class="hljs-keyword">int</span> button);                       <span class="hljs-comment">// Verifica si un botón del gamepad ha sido liberado una vez</span>
+    <span class="hljs-keyword">bool</span> IsGamepadButtonUp(<span class="hljs-keyword">int</span> gamepad, <span class="hljs-keyword">int</span> button);                             <span class="hljs-comment">// Verifica si un botón del gamepad NO está siendo presionado</span>
+    <span class="hljs-keyword">int</span> GetGamepadButtonPressed(<span class="hljs-keyword">void</span>);                                           <span class="hljs-comment">// Obtiene el último botón del gamepad presionado</span>
+    <span class="hljs-keyword">int</span> GetGamepadAxisCount(<span class="hljs-keyword">int</span> gamepad);                                        <span class="hljs-comment">// Obtiene el conteo de ejes de un gamepad</span>
+    <span class="hljs-keyword">float</span> GetGamepadAxisMovement(<span class="hljs-keyword">int</span> gamepad, <span class="hljs-keyword">int</span> axis);                         <span class="hljs-comment">// Obtiene el valor de movimiento de un eje del gamepad</span>
+    <span class="hljs-keyword">int</span> SetGamepadMappings(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *mappings);                                <span class="hljs-comment">// Establece mapeos internos de gamepad (SDL_GameControllerDB)</span>
+    <span class="hljs-keyword">void</span> SetGamepadVibration(<span class="hljs-keyword">int</span> gamepad, <span class="hljs-keyword">float</span> leftMotor, <span class="hljs-keyword">float</span> rightMotor, <span class="hljs-keyword">float</span> duration); <span class="hljs-comment">// Establece la vibración del gamepad para ambos motores (duración en segundos)</span>
+
+    <span class="hljs-comment">// Funciones relacionadas con la entrada: mouse</span>
+    <span class="hljs-keyword">bool</span> IsMouseButtonPressed(<span class="hljs-keyword">int</span> button);                  <span class="hljs-comment">// Verifica si un botón del mouse ha sido presionado una vez</span>
+    <span class="hljs-keyword">bool</span> IsMouseButtonDown(<span class="hljs-keyword">int</span> button);                     <span class="hljs-comment">// Verifica si un botón del mouse está siendo presionado</span>
+    <span class="hljs-keyword">bool</span> IsMouseButtonReleased(<span class="hljs-keyword">int</span> button);                 <span class="hljs-comment">// Verifica si un botón del mouse ha sido liberado una vez</span>
+    <span class="hljs-keyword">bool</span> IsMouseButtonUp(<span class="hljs-keyword">int</span> button);                       <span class="hljs-comment">// Verifica si un botón del mouse NO está siendo presionado</span>
+    <span class="hljs-keyword">int</span> GetMouseX(<span class="hljs-keyword">void</span>);                                    <span class="hljs-comment">// Obtiene la posición X del mouse</span>
+    <span class="hljs-keyword">int</span> GetMouseY(<span class="hljs-keyword">void</span>);                                    <span class="hljs-comment">// Obtiene la posición Y del mouse</span>
+    Vector2 GetMousePosition(<span class="hljs-keyword">void</span>);                         <span class="hljs-comment">// Obtiene la posición XY del mouse</span>
+    Vector2 GetMouseDelta(<span class="hljs-keyword">void</span>);                            <span class="hljs-comment">// Obtiene el delta del mouse entre fotogramas</span>
+    <span class="hljs-keyword">void</span> SetMousePosition(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y);                    <span class="hljs-comment">// Establece la posición XY del mouse</span>
+    <span class="hljs-keyword">void</span> SetMouseOffset(<span class="hljs-keyword">int</span> offsetX, <span class="hljs-keyword">int</span> offsetY);          <span class="hljs-comment">// Establece el desplazamiento del mouse</span>
+    <span class="hljs-keyword">void</span> SetMouseScale(<span class="hljs-keyword">float</span> scaleX, <span class="hljs-keyword">float</span> scaleY);         <span class="hljs-comment">// Establece la escala del mouse</span>
+    <span class="hljs-keyword">float</span> GetMouseWheelMove(<span class="hljs-keyword">void</span>);                          <span class="hljs-comment">// Obtiene el movimiento de la rueda del mouse para X o Y, el que sea mayor</span>
+    Vector2 GetMouseWheelMoveV(<span class="hljs-keyword">void</span>);                       <span class="hljs-comment">// Obtiene el movimiento de la rueda del mouse tanto para X como para Y</span>
+    <span class="hljs-keyword">void</span> SetMouseCursor(<span class="hljs-keyword">int</span> cursor);                        <span class="hljs-comment">// Establece el cursor del mouse</span>
+
+    <span class="hljs-comment">// Funciones relacionadas con la entrada: táctil</span>
+    <span class="hljs-keyword">int</span> GetTouchX(<span class="hljs-keyword">void</span>);                                    <span class="hljs-comment">// Obtiene la posición X táctil para el punto táctil 0 (relativo al tamaño de la pantalla)</span>
+    <span class="hljs-keyword">int</span> GetTouchY(<span class="hljs-keyword">void</span>);                                    <span class="hljs-comment">// Obtiene la posición Y táctil para el punto táctil 0 (relativo al tamaño de la pantalla)</span>
+    Vector2 GetTouchPosition(<span class="hljs-keyword">int</span> index);                    <span class="hljs-comment">// Obtiene la posición XY táctil para un índice de punto táctil (relativo al tamaño de la pantalla)</span>
+    <span class="hljs-keyword">int</span> GetTouchPointId(<span class="hljs-keyword">int</span> index);                         <span class="hljs-comment">// Obtiene el identificador del punto táctil para un índice dado</span>
+    <span class="hljs-keyword">int</span> GetTouchPointCount(<span class="hljs-keyword">void</span>);                           <span class="hljs-comment">// Obtiene el número de puntos táctiles</span>
+
+    <span class="hljs-comment">//------------------------------------------------------------------------------------</span>
+    <span class="hljs-comment">// Funciones de manejo de gestos y táctil (Módulo: rgestures)</span>
+    <span class="hljs-comment">//------------------------------------------------------------------------------------</span>
+    <span class="hljs-keyword">void</span> SetGesturesEnabled(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> flags);      <span class="hljs-comment">// Habilita un conjunto de gestos usando banderas</span>
+    <span class="hljs-keyword">bool</span> IsGestureDetected(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> gesture);     <span class="hljs-comment">// Verifica si se ha detectado un gesto</span>
+    <span class="hljs-keyword">int</span> GetGestureDetected(<span class="hljs-keyword">void</span>);                     <span class="hljs-comment">// Obtiene el último gesto detectado</span>
+    <span class="hljs-keyword">float</span> GetGestureHoldDuration(<span class="hljs-keyword">void</span>);               <span class="hljs-comment">// Obtiene el tiempo de mantenimiento del gesto en segundos</span>
+    Vector2 GetGestureDragVector(<span class="hljs-keyword">void</span>);               <span class="hljs-comment">// Obtiene el vector de arrastre del gesto</span>
+    <span class="hljs-keyword">float</span> GetGestureDragAngle(<span class="hljs-keyword">void</span>);                  <span class="hljs-comment">// Obtiene el ángulo de arrastre del gesto</span>
+    Vector2 GetGesturePinchVector(<span class="hljs-keyword">void</span>);              <span class="hljs-comment">// Obtiene el delta de pellizco del gesto</span>
+    <span class="hljs-keyword">float</span> GetGesturePinchAngle(<span class="hljs-keyword">void</span>);                 <span class="hljs-comment">// Obtiene el ángulo de pellizco del gesto</span>
+
+    <span class="hljs-comment">//------------------------------------------------------------------------------------</span>
+    <span class="hljs-comment">// Funciones del sistema de cámara (Módulo: rcamera)</span>
+    <span class="hljs-comment">//------------------------------------------------------------------------------------</span>
+    <span class="hljs-keyword">void</span> UpdateCamera(Camera *camera, <span class="hljs-keyword">int</span> mode);      <span class="hljs-comment">// Actualiza la posición de la cámara para el modo seleccionado</span>
+    <span class="hljs-keyword">void</span> UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, <span class="hljs-keyword">float</span> zoom); <span class="hljs-comment">// Actualiza el movimiento/rotación de la cámara</span>
+</code></pre></div>
+
+            <!-- MÓDULO: rshapes -->
+            <p id="pshapes">módulo: rshapes <a href="#pshapes">→</a></p>
+            <div id="shapes"><pre><code class="cpp hljs ">
+    <span class="hljs-comment">// Establece la textura y el rectángulo que se usarán en el dibujo de formas</span>
+    <span class="hljs-comment">// NOTA: Puede ser útil cuando se usan formas básicas y una sola fuente,</span>
+    <span class="hljs-comment">// definiendo un rectángulo blanco de carácter de fuente permitiría dibujar todo en una sola llamada de dibujo</span>
+    <span class="hljs-keyword">void</span> SetShapesTexture(Texture2D texture, Rectangle source);       <span class="hljs-comment">// Establece la textura y el rectángulo que se usarán en el dibujo de formas</span>
+    Texture2D GetShapesTexture(<span class="hljs-keyword">void</span>);                                 <span class="hljs-comment">// Obtiene la textura que se usa para el dibujo de formas</span>
+    Rectangle GetShapesTextureRectangle(<span class="hljs-keyword">void</span>);                        <span class="hljs-comment">// Obtiene el rectángulo de origen de la textura que se usa para el dibujo de formas</span>
+
+    <span class="hljs-comment">// Funciones de dibujo de formas básicas</span>
+    <span class="hljs-keyword">void</span> DrawPixel(<span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, Color color);                                                   <span class="hljs-comment">// Dibuja un píxel usando geometría [Puede ser lento, usar con cuidado]</span>
+    <span class="hljs-keyword">void</span> DrawPixelV(Vector2 position, Color color);                                                    <span class="hljs-comment">// Dibuja un píxel usando geometría (versión Vector) [Puede ser lento, usar con cuidado]</span>
+    <span class="hljs-keyword">void</span> DrawLine(<span class="hljs-keyword">int</span> startPosX, <span class="hljs-keyword">int</span> startPosY, <span class="hljs-keyword">int</span> endPosX, <span class="hljs-keyword">int</span> endPosY, Color color);                <span class="hljs-comment">// Dibuja una línea</span>
+    <span class="hljs-keyword">void</span> DrawLineV(Vector2 startPos, Vector2 endPos, Color color);                                     <span class="hljs-comment">// Dibuja una línea (usando líneas gl)</span>
+    <span class="hljs-keyword">void</span> DrawLineEx(Vector2 startPos, Vector2 endPos, <span class="hljs-keyword">float</span> thick, Color color);                       <span class="hljs-comment">// Dibuja una línea (usando triángulos/cuadriláteros)</span>
+    <span class="hljs-keyword">void</span> DrawLineStrip(<span class="hljs-keyword">const</span> Vector2 *points, <span class="hljs-keyword">int</span> pointCount, Color color);                            <span class="hljs-comment">// Dibuja una secuencia de líneas (usando líneas gl)</span>
+    <span class="hljs-keyword">void</span> DrawLineBezier(Vector2 startPos, Vector2 endPos, <span class="hljs-keyword">float</span> thick, Color color);                   <span class="hljs-comment">// Dibuja un segmento de línea bezier cúbica con interpolación entrada-salida</span>
+    <span class="hljs-keyword">void</span> DrawCircle(<span class="hljs-keyword">int</span> centerX, <span class="hljs-keyword">int</span> centerY, <span class="hljs-keyword">float</span> radius, Color color);                              <span class="hljs-comment">// Dibuja un círculo relleno de color</span>
+    <span class="hljs-keyword">void</span> DrawCircleSector(Vector2 center, <span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> startAngle, <span class="hljs-keyword">float</span> endAngle, <span class="hljs-keyword">int</span> segments, Color color);      <span class="hljs-comment">// Dibuja una porción de un círculo</span>
+    <span class="hljs-keyword">void</span> DrawCircleSectorLines(Vector2 center, <span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> startAngle, <span class="hljs-keyword">float</span> endAngle, <span class="hljs-keyword">int</span> segments, Color color); <span class="hljs-comment">// Dibuja el contorno de un sector circular</span>
+    <span class="hljs-keyword">void</span> DrawCircleGradient(<span class="hljs-keyword">int</span> centerX, <span class="hljs-keyword">int</span> centerY, <span class="hljs-keyword">float</span> radius, Color inner, Color outer);         <span class="hljs-comment">// Dibuja un círculo con relleno degradado</span>
+    <span class="hljs-keyword">void</span> DrawCircleV(Vector2 center, <span class="hljs-keyword">float</span> radius, Color color);                                       <span class="hljs-comment">// Dibuja un círculo relleno de color (versión Vector)</span>
+    <span class="hljs-keyword">void</span> DrawCircleLines(<span class="hljs-keyword">int</span> centerX, <span class="hljs-keyword">int</span> centerY, <span class="hljs-keyword">float</span> radius, Color color);                         <span class="hljs-comment">// Dibuja el contorno de un círculo</span>
+    <span class="hljs-keyword">void</span> DrawCircleLinesV(Vector2 center, <span class="hljs-keyword">float</span> radius, Color color);                                  <span class="hljs-comment">// Dibuja el contorno de un círculo (versión Vector)</span>
+    <span class="hljs-keyword">void</span> DrawEllipse(<span class="hljs-keyword">int</span> centerX, <span class="hljs-keyword">int</span> centerY, <span class="hljs-keyword">float</span> radiusH, <span class="hljs-keyword">float</span> radiusV, Color color);             <span class="hljs-comment">// Dibuja una elipse</span>
+    <span class="hljs-keyword">void</span> DrawEllipseLines(<span class="hljs-keyword">int</span> centerX, <span class="hljs-keyword">int</span> centerY, <span class="hljs-keyword">float</span> radiusH, <span class="hljs-keyword">float</span> radiusV, Color color);        <span class="hljs-comment">// Dibuja el contorno de una elipse</span>
+    <span class="hljs-keyword">void</span> DrawRing(Vector2 center, <span class="hljs-keyword">float</span> innerRadius, <span class="hljs-keyword">float</span> outerRadius, <span class="hljs-keyword">float</span> startAngle, <span class="hljs-keyword">float</span> endAngle, <span class="hljs-keyword">int</span> segments, Color color); <span class="hljs-comment">// Dibuja un anillo</span>
+    <span class="hljs-keyword">void</span> DrawRingLines(Vector2 center, <span class="hljs-keyword">float</span> innerRadius, <span class="hljs-keyword">float</span> outerRadius, <span class="hljs-keyword">float</span> startAngle, <span class="hljs-keyword">float</span> endAngle, <span class="hljs-keyword">int</span> segments, Color color);    <span class="hljs-comment">// Dibuja el contorno de un anillo</span>
+    <span class="hljs-keyword">void</span> DrawRectangle(<span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, Color color);                        <span class="hljs-comment">// Dibuja un rectángulo relleno de color</span>
+    <span class="hljs-keyword">void</span> DrawRectangleV(Vector2 position, Vector2 size, Color color);                                  <span class="hljs-comment">// Dibuja un rectángulo relleno de color (versión Vector)</span>
+    <span class="hljs-keyword">void</span> DrawRectangleRec(Rectangle rec, Color color);                                                 <span class="hljs-comment">// Dibuja un rectángulo relleno de color</span>
+    <span class="hljs-keyword">void</span> DrawRectanglePro(Rectangle rec, Vector2 origin, <span class="hljs-keyword">float</span> rotation, Color color);                 <span class="hljs-comment">// Dibuja un rectángulo relleno de color con parámetros profesionales</span>
+    <span class="hljs-keyword">void</span> DrawRectangleGradientV(<span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, Color top, Color bottom);   <span class="hljs-comment">// Dibuja un rectángulo con relleno degradado vertical</span>
+    <span class="hljs-keyword">void</span> DrawRectangleGradientH(<span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, Color left, Color right);   <span class="hljs-comment">// Dibuja un rectángulo con relleno degradado horizontal</span>
+    <span class="hljs-keyword">void</span> DrawRectangleGradientEx(Rectangle rec, Color topLeft, Color bottomLeft, Color topRight, Color bottomRight); <span class="hljs-comment">// Dibuja un rectángulo con relleno degradado con colores de vértice personalizados</span>
+    <span class="hljs-keyword">void</span> DrawRectangleLines(<span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, Color color);                   <span class="hljs-comment">// Dibuja el contorno de un rectángulo</span>
+    <span class="hljs-keyword">void</span> DrawRectangleLinesEx(Rectangle rec, <span class="hljs-keyword">float</span> lineThick, Color color);                            <span class="hljs-comment">// Dibuja el contorno de un rectángulo con parámetros extendidos</span>
+    <span class="hljs-keyword">void</span> DrawRectangleRounded(Rectangle rec, <span class="hljs-keyword">float</span> roundness, <span class="hljs-keyword">int</span> segments, Color color);              <span class="hljs-comment">// Dibuja un rectángulo con bordes redondeados</span>
+    <span class="hljs-keyword">void</span> DrawRectangleRoundedLines(Rectangle rec, <span class="hljs-keyword">float</span> roundness, <span class="hljs-keyword">int</span> segments, Color color);         <span class="hljs-comment">// Dibuja las líneas de un rectángulo con bordes redondeados</span>
+    <span class="hljs-keyword">void</span> DrawRectangleRoundedLinesEx(Rectangle rec, <span class="hljs-keyword">float</span> roundness, <span class="hljs-keyword">int</span> segments, <span class="hljs-keyword">float</span> lineThick, Color color); <span class="hljs-comment">// Dibuja el contorno de un rectángulo con bordes redondeados</span>
+    <span class="hljs-keyword">void</span> DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color);                                <span class="hljs-comment">// Dibuja un triángulo relleno de color (vértices en orden antihorario)</span>
+    <span class="hljs-keyword">void</span> DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color);                           <span class="hljs-comment">// Dibuja el contorno de un triángulo (vértices en orden antihorario)</span>
+    <span class="hljs-keyword">void</span> DrawTriangleFan(<span class="hljs-keyword">const</span> Vector2 *points, <span class="hljs-keyword">int</span> pointCount, Color color);                          <span class="hljs-comment">// Dibuja un abanico de triángulos definido por puntos (el primer vértice es el centro)</span>
+    <span class="hljs-keyword">void</span> DrawTriangleStrip(<span class="hljs-keyword">const</span> Vector2 *points, <span class="hljs-keyword">int</span> pointCount, Color color);                        <span class="hljs-comment">// Dibuja una tira de triángulos definida por puntos</span>
+    <span class="hljs-keyword">void</span> DrawPoly(Vector2 center, <span class="hljs-keyword">int</span> sides, <span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> rotation, Color color);               <span class="hljs-comment">// Dibuja un polígono regular (versión Vector)</span>
+    <span class="hljs-keyword">void</span> DrawPolyLines(Vector2 center, <span class="hljs-keyword">int</span> sides, <span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> rotation, Color color);          <span class="hljs-comment">// Dibuja el contorno de un polígono de n lados</span>
+    <span class="hljs-keyword">void</span> DrawPolyLinesEx(Vector2 center, <span class="hljs-keyword">int</span> sides, <span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> rotation, <span class="hljs-keyword">float</span> lineThick, Color color); <span class="hljs-comment">// Dibuja el contorno de un polígono de n lados con parámetros extendidos</span>
+
+    <span class="hljs-comment">// Funciones de dibujo de splines</span>
+    <span class="hljs-keyword">void</span> DrawSplineLinear(<span class="hljs-keyword">const</span> Vector2 *points, <span class="hljs-keyword">int</span> pointCount, <span class="hljs-keyword">float</span> thick, Color color);                  <span class="hljs-comment">// Dibuja spline: Lineal, mínimo 2 puntos</span>
+    <span class="hljs-keyword">void</span> DrawSplineBasis(<span class="hljs-keyword">const</span> Vector2 *points, <span class="hljs-keyword">int</span> pointCount, <span class="hljs-keyword">float</span> thick, Color color);                   <span class="hljs-comment">// Dibuja spline: B-Spline, mínimo 4 puntos</span>
+    <span class="hljs-keyword">void</span> DrawSplineCatmullRom(<span class="hljs-keyword">const</span> Vector2 *points, <span class="hljs-keyword">int</span> pointCount, <span class="hljs-keyword">float</span> thick, Color color);              <span class="hljs-comment">// Dibuja spline: Catmull-Rom, mínimo 4 puntos</span>
+    <span class="hljs-keyword">void</span> DrawSplineBezierQuadratic(<span class="hljs-keyword">const</span> Vector2 *points, <span class="hljs-keyword">int</span> pointCount, <span class="hljs-keyword">float</span> thick, Color color);         <span class="hljs-comment">// Dibuja spline: Bezier cuadrático, mínimo 3 puntos (1 punto de control): [p1, c2, p3, c4...]</span>
+    <span class="hljs-keyword">void</span> DrawSplineBezierCubic(<span class="hljs-keyword">const</span> Vector2 *points, <span class="hljs-keyword">int</span> pointCount, <span class="hljs-keyword">float</span> thick, Color color);             <span class="hljs-comment">// Dibuja spline: Bezier cúbico, mínimo 4 puntos (2 puntos de control): [p1, c2, c3, p4, c5, c6...]</span>
+    <span class="hljs-keyword">void</span> DrawSplineSegmentLinear(Vector2 p1, Vector2 p2, <span class="hljs-keyword">float</span> thick, Color color);                    <span class="hljs-comment">// Dibuja segmento de spline: Lineal, 2 puntos</span>
+    <span class="hljs-keyword">void</span> DrawSplineSegmentBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, <span class="hljs-keyword">float</span> thick, Color color); <span class="hljs-comment">// Dibuja segmento de spline: B-Spline, 4 puntos</span>
+    <span class="hljs-keyword">void</span> DrawSplineSegmentCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, <span class="hljs-keyword">float</span> thick, Color color); <span class="hljs-comment">// Dibuja segmento de spline: Catmull-Rom, 4 puntos</span>
+    <span class="hljs-keyword">void</span> DrawSplineSegmentBezierQuadratic(Vector2 p1, Vector2 c2, Vector2 p3, <span class="hljs-keyword">float</span> thick, Color color); <span class="hljs-comment">// Dibuja segmento de spline: Bezier cuadrático, 2 puntos, 1 punto de control</span>
+    <span class="hljs-keyword">void</span> DrawSplineSegmentBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, <span class="hljs-keyword">float</span> thick, Color color); <span class="hljs-comment">// Dibuja segmento de spline: Bezier cúbico, 2 puntos, 2 puntos de control</span>
+
+    <span class="hljs-comment">// Funciones de evaluación de puntos de segmentos de spline, para un t dado [0.0f .. 1.0f]</span>
+    Vector2 GetSplinePointLinear(Vector2 startPos, Vector2 endPos, <span class="hljs-keyword">float</span> t);                           <span class="hljs-comment">// Obtiene (evalúa) el punto de la spline: Lineal</span>
+    Vector2 GetSplinePointBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, <span class="hljs-keyword">float</span> t);              <span class="hljs-comment">// Obtiene (evalúa) el punto de la spline: B-Spline</span>
+    Vector2 GetSplinePointCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, <span class="hljs-keyword">float</span> t);         <span class="hljs-comment">// Obtiene (evalúa) el punto de la spline: Catmull-Rom</span>
+    Vector2 GetSplinePointBezierQuad(Vector2 p1, Vector2 c2, Vector2 p3, <span class="hljs-keyword">float</span> t);                     <span class="hljs-comment">// Obtiene (evalúa) el punto de la spline: Bezier cuadrático</span>
+    Vector2 GetSplinePointBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, <span class="hljs-keyword">float</span> t);        <span class="hljs-comment">// Obtiene (evalúa) el punto de la spline: Bezier cúbico</span>
+
+    <span class="hljs-comment">// Funciones de detección de colisión de formas básicas</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionRecs(Rectangle rec1, Rectangle rec2);                                           <span class="hljs-comment">// Verifica la colisión entre dos rectángulos</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionCircles(Vector2 center1, <span class="hljs-keyword">float</span> radius1, Vector2 center2, <span class="hljs-keyword">float</span> radius2);        <span class="hljs-comment">// Verifica la colisión entre dos círculos</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionCircleRec(Vector2 center, <span class="hljs-keyword">float</span> radius, Rectangle rec);                         <span class="hljs-comment">// Verifica la colisión entre un círculo y un rectángulo</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionCircleLine(Vector2 center, <span class="hljs-keyword">float</span> radius, Vector2 p1, Vector2 p2);               <span class="hljs-comment">// Verifica si un círculo colisiona con una línea creada entre dos puntos [p1] y [p2]</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionPointRec(Vector2 point, Rectangle rec);                                         <span class="hljs-comment">// Verifica si un punto está dentro de un rectángulo</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionPointCircle(Vector2 point, Vector2 center, <span class="hljs-keyword">float</span> radius);                       <span class="hljs-comment">// Verifica si un punto está dentro de un círculo</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3);               <span class="hljs-comment">// Verifica si un punto está dentro de un triángulo</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, <span class="hljs-keyword">int</span> threshold);                <span class="hljs-comment">// Verifica si un punto pertenece a la línea creada entre dos puntos [p1] y [p2] con un margen definido en píxeles [threshold]</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionPointPoly(Vector2 point, <span class="hljs-keyword">const</span> Vector2 *points, <span class="hljs-keyword">int</span> pointCount);                <span class="hljs-comment">// Verifica si un punto está dentro de un polígono descrito por un arreglo de vértices</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2 *collisionPoint); <span class="hljs-comment">// Verifica la colisión entre dos líneas definidas por dos puntos cada una, devuelve el punto de colisión por referencia</span>
+    Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);                                         <span class="hljs-comment">// Obtiene el rectángulo de colisión para la colisión de dos rectángulos</span>
+</code></pre></div>
+
+            <!-- MÓDULO: rtextures -->
+            <p id="ptextures">módulo: rtextures <a href="#ptextures">→</a></p>
+            <div id="textures"><pre><code class="cpp hljs ">
+    <span class="hljs-comment">// Funciones de carga de imágenes</span>
+    <span class="hljs-comment">// NOTA: Estas funciones no requieren acceso a la GPU</span>
+    Image LoadImage(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                                                             <span class="hljs-comment">// Carga una imagen desde un archivo en la memoria de la CPU (RAM)</span>
+    Image LoadImageRaw(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">int</span> format, <span class="hljs-keyword">int</span> headerSize);       <span class="hljs-comment">// Carga una imagen desde datos de archivo RAW</span>
+    Image LoadImageAnim(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName, <span class="hljs-keyword">int</span> *frames);                                            <span class="hljs-comment">// Carga una secuencia de imágenes desde un archivo (fotogramas añadidos a image.data)</span>
+    Image LoadImageAnimFromMemory(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileType, <span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *fileData, <span class="hljs-keyword">int</span> dataSize, <span class="hljs-keyword">int</span> *frames); <span class="hljs-comment">// Carga una secuencia de imágenes desde un búfer de memoria</span>
+    Image LoadImageFromMemory(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileType, <span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *fileData, <span class="hljs-keyword">int</span> dataSize);      <span class="hljs-comment">// Carga una imagen desde un búfer de memoria, fileType se refiere a la extensión: ej. '.png'</span>
+    Image LoadImageFromTexture(Texture2D texture);                                                     <span class="hljs-comment">// Carga una imagen desde datos de textura en la GPU</span>
+    Image LoadImageFromScreen(<span class="hljs-keyword">void</span>);                                                                   <span class="hljs-comment">// Carga una imagen desde el búfer de pantalla (captura de pantalla)</span>
+    <span class="hljs-keyword">bool</span> IsImageValid(Image image);                                                                    <span class="hljs-comment">// Verifica si una imagen es válida (datos y parámetros)</span>
+    <span class="hljs-keyword">void</span> UnloadImage(Image image);                                                                     <span class="hljs-comment">// Descarga la imagen de la memoria de la CPU (RAM)</span>
+    <span class="hljs-keyword">bool</span> ExportImage(Image image, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                                               <span class="hljs-comment">// Exporta los datos de la imagen a un archivo, devuelve true en éxito</span>
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *ExportImageToMemory(Image image, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileType, <span class="hljs-keyword">int</span> *fileSize);              <span class="hljs-comment">// Exporta la imagen a un búfer de memoria</span>
+    <span class="hljs-keyword">bool</span> ExportImageAsCode(Image image, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                                         <span class="hljs-comment">// Exporta la imagen como un archivo de código que define un arreglo de bytes, devuelve true en éxito</span>
+
+    <span class="hljs-comment">// Funciones de generación de imágenes</span>
+    Image GenImageColor(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, Color color);                                           <span class="hljs-comment">// Genera una imagen: color sólido</span>
+    Image GenImageGradientLinear(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">int</span> direction, Color start, Color end);        <span class="hljs-comment">// Genera una imagen: gradiente lineal, dirección en grados [0..360], 0=gradiente vertical</span>
+    Image GenImageGradientRadial(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">float</span> density, Color inner, Color outer);      <span class="hljs-comment">// Genera una imagen: gradiente radial</span>
+    Image GenImageGradientSquare(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">float</span> density, Color inner, Color outer);      <span class="hljs-comment">// Genera una imagen: gradiente cuadrado</span>
+    Image GenImageChecked(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">int</span> checksX, <span class="hljs-keyword">int</span> checksY, Color col1, Color col2);    <span class="hljs-comment">// Genera una imagen: cuadros</span>
+    Image GenImageWhiteNoise(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">float</span> factor);                                     <span class="hljs-comment">// Genera una imagen: ruido blanco</span>
+    Image GenImagePerlinNoise(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">int</span> offsetX, <span class="hljs-keyword">int</span> offsetY, <span class="hljs-keyword">float</span> scale);           <span class="hljs-comment">// Genera una imagen: ruido Perlin</span>
+    Image GenImageCellular(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">int</span> tileSize);                                       <span class="hljs-comment">// Genera una imagen: algoritmo celular, mayor tileSize significa celdas más grandes</span>
+    Image GenImageText(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                                       <span class="hljs-comment">// Genera una imagen: imagen en escala de grises a partir de datos de texto</span>
+
+    <span class="hljs-comment">// Funciones de manipulación de imágenes</span>
+    Image ImageCopy(Image image);                                                                      <span class="hljs-comment">// Crea un duplicado de la imagen (útil para transformaciones)</span>
+    Image ImageFromImage(Image image, Rectangle rec);                                                  <span class="hljs-comment">// Crea una imagen a partir de otra imagen</span>
+    Image ImageFromChannel(Image image, <span class="hljs-keyword">int</span> selectedChannel);                                          <span class="hljs-comment">// Crea una imagen a partir de un canal seleccionado de otra imagen (ESCALA DE GRISES)</span>
+    Image ImageText(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">int</span> fontSize, Color color);                                      <span class="hljs-comment">// Crea una imagen a partir de texto (fuente por defecto)</span>
+    Image ImageTextEx(Font font, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">float</span> fontSize, <span class="hljs-keyword">float</span> spacing, Color tint);         <span class="hljs-comment">// Crea una imagen a partir de texto (fuente de sprite personalizada)</span>
+    <span class="hljs-keyword">void</span> ImageFormat(Image *image, <span class="hljs-keyword">int</span> newFormat);                                                     <span class="hljs-comment">// Convierte los datos de la imagen al formato deseado</span>
+    <span class="hljs-keyword">void</span> ImageToPOT(Image *image, Color fill);                                                         <span class="hljs-comment">// Convierte la imagen a POT (potencia de dos)</span>
+    <span class="hljs-keyword">void</span> ImageCrop(Image *image, Rectangle crop);                                                      <span class="hljs-comment">// Recorta una imagen a un rectángulo definido</span>
+    <span class="hljs-keyword">void</span> ImageAlphaCrop(Image *image, <span class="hljs-keyword">float</span> threshold);                                                <span class="hljs-comment">// Recorta la imagen dependiendo del valor alfa</span>
+    <span class="hljs-keyword">void</span> ImageAlphaClear(Image *image, Color color, <span class="hljs-keyword">float</span> threshold);                                  <span class="hljs-comment">// Limpia el canal alfa al color deseado</span>
+    <span class="hljs-keyword">void</span> ImageAlphaMask(Image *image, Image alphaMask);                                                <span class="hljs-comment">// Aplica una máscara alfa a la imagen</span>
+    <span class="hljs-keyword">void</span> ImageAlphaPremultiply(Image *image);                                                          <span class="hljs-comment">// Premultiplica el canal alfa</span>
+    <span class="hljs-keyword">void</span> ImageBlurGaussian(Image *image, <span class="hljs-keyword">int</span> blurSize);                                                <span class="hljs-comment">// Aplica desenfoque gaussiano usando una aproximación de caja de desenfoque</span>
+    <span class="hljs-keyword">void</span> ImageKernelConvolution(Image *image, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> *kernel, <span class="hljs-keyword">int</span> kernelSize);                    <span class="hljs-comment">// Aplica un kernel de convolución cuadrado personalizado a la imagen</span>
+    <span class="hljs-keyword">void</span> ImageResize(Image *image, <span class="hljs-keyword">int</span> newWidth, <span class="hljs-keyword">int</span> newHeight);                                       <span class="hljs-comment">// Redimensiona la imagen (algoritmo de escalado bicúbico)</span>
+    <span class="hljs-keyword">void</span> ImageResizeNN(Image *image, <span class="hljs-keyword">int</span> newWidth,<span class="hljs-keyword">int</span> newHeight);                                      <span class="hljs-comment">// Redimensiona la imagen (algoritmo de escalado por vecino más cercano)</span>
+    <span class="hljs-keyword">void</span> ImageResizeCanvas(Image *image, <span class="hljs-keyword">int</span> newWidth, <span class="hljs-keyword">int</span> newHeight, <span class="hljs-keyword">int</span> offsetX, <span class="hljs-keyword">int</span> offsetY, Color fill); <span class="hljs-comment">// Redimensiona el lienzo y lo rellena con color</span>
+    <span class="hljs-keyword">void</span> ImageMipmaps(Image *image);                                                                   <span class="hljs-comment">// Calcula todos los niveles de mipmap para una imagen proporcionada</span>
+    <span class="hljs-keyword">void</span> ImageDither(Image *image, <span class="hljs-keyword">int</span> rBpp, <span class="hljs-keyword">int</span> gBpp, <span class="hljs-keyword">int</span> bBpp, <span class="hljs-keyword">int</span> aBpp);                            <span class="hljs-comment">// Aplica tramado a los datos de la imagen a 16bpp o menos (tramado de Floyd-Steinberg)</span>
+    <span class="hljs-keyword">void</span> ImageFlipVertical(Image *image);                                                              <span class="hljs-comment">// Voltea la imagen verticalmente</span>
+    <span class="hljs-keyword">void</span> ImageFlipHorizontal(Image *image);                                                            <span class="hljs-comment">// Voltea la imagen horizontalmente</span>
+    <span class="hljs-keyword">void</span> ImageRotate(Image *image, <span class="hljs-keyword">int</span> degrees);                                                       <span class="hljs-comment">// Rota la imagen por el ángulo de entrada en grados (-359 a 359)</span>
+    <span class="hljs-keyword">void</span> ImageRotateCW(Image *image);                                                                  <span class="hljs-comment">// Rota la imagen 90 grados en sentido horario</span>
+    <span class="hljs-keyword">void</span> ImageRotateCCW(Image *image);                                                                 <span class="hljs-comment">// Rota la imagen 90 grados en sentido antihorario</span>
+    <span class="hljs-keyword">void</span> ImageColorTint(Image *image, Color color);                                                    <span class="hljs-comment">// Modifica el color de la imagen: matiz</span>
+    <span class="hljs-keyword">void</span> ImageColorInvert(Image *image);                                                               <span class="hljs-comment">// Modifica el color de la imagen: invertir</span>
+    <span class="hljs-keyword">void</span> ImageColorGrayscale(Image *image);                                                            <span class="hljs-comment">// Modifica el color de la imagen: escala de grises</span>
+    <span class="hljs-keyword">void</span> ImageColorContrast(Image *image, <span class="hljs-keyword">float</span> contrast);                                             <span class="hljs-comment">// Modifica el color de la imagen: contraste (-100 a 100)</span>
+    <span class="hljs-keyword">void</span> ImageColorBrightness(Image *image, <span class="hljs-keyword">int</span> brightness);                                           <span class="hljs-comment">// Modifica el color de la imagen: brillo (-255 a 255)</span>
+    <span class="hljs-keyword">void</span> ImageColorReplace(Image *image, Color color, Color replace);                                  <span class="hljs-comment">// Modifica el color de la imagen: reemplazar color</span>
+    Color *LoadImageColors(Image image);                                                               <span class="hljs-comment">// Carga datos de color de la imagen como un arreglo de Color (RGBA - 32 bits)</span>
+    Color *LoadImagePalette(Image image, <span class="hljs-keyword">int</span> maxPaletteSize, <span class="hljs-keyword">int</span> *colorCount);                         <span class="hljs-comment">// Carga la paleta de colores de la imagen como un arreglo de Color (RGBA - 32 bits)</span>
+    <span class="hljs-keyword">void</span> UnloadImageColors(Color *colors);                                                             <span class="hljs-comment">// Descarga los datos de color cargados con LoadImageColors()</span>
+    <span class="hljs-keyword">void</span> UnloadImagePalette(Color *colors);                                                            <span class="hljs-comment">// Descarga la paleta de colores cargada con LoadImagePalette()</span>
+    Rectangle GetImageAlphaBorder(Image image, <span class="hljs-keyword">float</span> threshold);                                       <span class="hljs-comment">// Obtiene el rectángulo del borde alfa de la imagen</span>
+    Color GetImageColor(Image image, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y);                                                    <span class="hljs-comment">// Obtiene el color del píxel de la imagen en la posición (x, y)</span>
+
+    <span class="hljs-comment">// Funciones de dibujo en imágenes</span>
+    <span class="hljs-comment">// NOTA: Funciones de renderizado por software de imágenes (CPU)</span>
+    <span class="hljs-keyword">void</span> ImageClearBackground(Image *dst, Color color);                                                <span class="hljs-comment">// Limpia el fondo de la imagen con el color dado</span>
+    <span class="hljs-keyword">void</span> ImageDrawPixel(Image *dst, <span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, Color color);                                  <span class="hljs-comment">// Dibuja un píxel dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawPixelV(Image *dst, Vector2 position, Color color);                                   <span class="hljs-comment">// Dibuja un píxel dentro de una imagen (versión Vector)</span>
+    <span class="hljs-keyword">void</span> ImageDrawLine(Image *dst, <span class="hljs-keyword">int</span> startPosX, <span class="hljs-keyword">int</span> startPosY, <span class="hljs-keyword">int</span> endPosX, <span class="hljs-keyword">int</span> endPosY, Color color); <span class="hljs-comment">// Dibuja una línea dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawLineV(Image *dst, Vector2 start, Vector2 end, Color color);                          <span class="hljs-comment">// Dibuja una línea dentro de una imagen (versión Vector)</span>
+    <span class="hljs-keyword">void</span> ImageDrawLineEx(Image *dst, Vector2 start, Vector2 end, <span class="hljs-keyword">int</span> thick, Color color);              <span class="hljs-comment">// Dibuja una línea con grosor definido dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawCircle(Image *dst, <span class="hljs-keyword">int</span> centerX, <span class="hljs-keyword">int</span> centerY, <span class="hljs-keyword">int</span> radius, Color color);               <span class="hljs-comment">// Dibuja un círculo relleno dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawCircleV(Image *dst, Vector2 center, <span class="hljs-keyword">int</span> radius, Color color);                        <span class="hljs-comment">// Dibuja un círculo relleno dentro de una imagen (versión Vector)</span>
+    <span class="hljs-keyword">void</span> ImageDrawCircleLines(Image *dst, <span class="hljs-keyword">int</span> centerX, <span class="hljs-keyword">int</span> centerY, <span class="hljs-keyword">int</span> radius, Color color);          <span class="hljs-comment">// Dibuja el contorno de un círculo dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawCircleLinesV(Image *dst, Vector2 center, <span class="hljs-keyword">int</span> radius, Color color);                   <span class="hljs-comment">// Dibuja el contorno de un círculo dentro de una imagen (versión Vector)</span>
+    <span class="hljs-keyword">void</span> ImageDrawRectangle(Image *dst, <span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, Color color);       <span class="hljs-comment">// Dibuja un rectángulo dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawRectangleV(Image *dst, Vector2 position, Vector2 size, Color color);                 <span class="hljs-comment">// Dibuja un rectángulo dentro de una imagen (versión Vector)</span>
+    <span class="hljs-keyword">void</span> ImageDrawRectangleRec(Image *dst, Rectangle rec, Color color);                                <span class="hljs-comment">// Dibuja un rectángulo dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawRectangleLines(Image *dst, Rectangle rec, <span class="hljs-keyword">int</span> thick, Color color);                   <span class="hljs-comment">// Dibuja las líneas de un rectángulo dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawTriangle(Image *dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color);               <span class="hljs-comment">// Dibuja un triángulo dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawTriangleEx(Image *dst, Vector2 v1, Vector2 v2, Vector2 v3, Color c1, Color c2, Color c3); <span class="hljs-comment">// Dibuja un triángulo con colores interpolados dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawTriangleLines(Image *dst, Vector2 v1, Vector2 v2, Vector2 v3, Color color);          <span class="hljs-comment">// Dibuja el contorno de un triángulo dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDrawTriangleFan(Image *dst, Vector2 *points, <span class="hljs-keyword">int</span> pointCount, Color color);               <span class="hljs-comment">// Dibuja un abanico de triángulos definido por puntos dentro de una imagen (el primer vértice es el centro)</span>
+    <span class="hljs-keyword">void</span> ImageDrawTriangleStrip(Image *dst, Vector2 *points, <span class="hljs-keyword">int</span> pointCount, Color color);             <span class="hljs-comment">// Dibuja una tira de triángulos definida por puntos dentro de una imagen</span>
+    <span class="hljs-keyword">void</span> ImageDraw(Image *dst, Image src, Rectangle srcRec, Rectangle dstRec, Color tint);             <span class="hljs-comment">// Dibuja una imagen de origen dentro de una imagen de destino (se aplica matiz a la fuente)</span>
+    <span class="hljs-keyword">void</span> ImageDrawText(Image *dst, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, <span class="hljs-keyword">int</span> fontSize, Color color);   <span class="hljs-comment">// Dibuja texto (usando la fuente por defecto) dentro de una imagen (destino)</span>
+    <span class="hljs-keyword">void</span> ImageDrawTextEx(Image *dst, Font font, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, Vector2 position, <span class="hljs-keyword">float</span> fontSize, <span class="hljs-keyword">float</span> spacing, Color tint); <span class="hljs-comment">// Dibuja texto (fuente de sprite personalizada) dentro de una imagen (destino)</span>
+
+    <span class="hljs-comment">// Funciones de carga de texturas</span>
+    <span class="hljs-comment">// NOTA: Estas funciones requieren acceso a la GPU</span>
+    Texture2D LoadTexture(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                                                       <span class="hljs-comment">// Carga una textura desde un archivo en la memoria de la GPU (VRAM)</span>
+    Texture2D LoadTextureFromImage(Image image);                                                       <span class="hljs-comment">// Carga una textura desde datos de imagen</span>
+    TextureCubemap LoadTextureCubemap(Image image, <span class="hljs-keyword">int</span> layout);                                        <span class="hljs-comment">// Carga un cubemap desde una imagen, se admiten múltiples diseños de imagen de cubemap</span>
+    RenderTexture2D LoadRenderTexture(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height);                                          <span class="hljs-comment">// Carga una textura para renderizado (framebuffer)</span>
+    <span class="hljs-keyword">bool</span> IsTextureValid(Texture2D texture);                                                            <span class="hljs-comment">// Verifica si una textura es válida (cargada en la GPU)</span>
+    <span class="hljs-keyword">void</span> UnloadTexture(Texture2D texture);                                                             <span class="hljs-comment">// Descarga la textura de la memoria de la GPU (VRAM)</span>
+    <span class="hljs-keyword">bool</span> IsRenderTextureValid(RenderTexture2D target);                                                 <span class="hljs-comment">// Verifica si una textura de renderizado es válida (cargada en la GPU)</span>
+    <span class="hljs-keyword">void</span> UnloadRenderTexture(RenderTexture2D target);                                                  <span class="hljs-comment">// Descarga la textura de renderizado de la memoria de la GPU (VRAM)</span>
+    <span class="hljs-keyword">void</span> UpdateTexture(Texture2D texture, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *pixels);                                         <span class="hljs-comment">// Actualiza la textura de la GPU con nuevos datos</span>
+    <span class="hljs-keyword">void</span> UpdateTextureRec(Texture2D texture, Rectangle rec, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *pixels);                       <span class="hljs-comment">// Actualiza el rectángulo de la textura de la GPU con nuevos datos</span>
+
+    <span class="hljs-comment">// Funciones de configuración de texturas</span>
+    <span class="hljs-keyword">void</span> GenTextureMipmaps(Texture2D *texture);                                                        <span class="hljs-comment">// Genera mipmaps de GPU para una textura</span>
+    <span class="hljs-keyword">void</span> SetTextureFilter(Texture2D texture, <span class="hljs-keyword">int</span> filter);                                              <span class="hljs-comment">// Establece el modo de filtro de escalado de textura</span>
+    <span class="hljs-keyword">void</span> SetTextureWrap(Texture2D texture, <span class="hljs-keyword">int</span> wrap);                                                  <span class="hljs-comment">// Establece el modo de ajuste de textura</span>
+
+    <span class="hljs-comment">// Funciones de dibujo de texturas</span>
+    <span class="hljs-keyword">void</span> DrawTexture(Texture2D texture, <span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, Color tint);                               <span class="hljs-comment">// Dibuja una Texture2D</span>
+    <span class="hljs-keyword">void</span> DrawTextureV(Texture2D texture, Vector2 position, Color tint);                                <span class="hljs-comment">// Dibuja una Texture2D con posición definida como Vector2</span>
+    <span class="hljs-keyword">void</span> DrawTextureEx(Texture2D texture, Vector2 position, <span class="hljs-keyword">float</span> rotation, <span class="hljs-keyword">float</span> scale, Color tint);  <span class="hljs-comment">// Dibuja una Texture2D con parámetros extendidos</span>
+    <span class="hljs-keyword">void</span> DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint);            <span class="hljs-comment">// Dibuja una parte de una textura definida por un rectángulo</span>
+    <span class="hljs-keyword">void</span> DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, <span class="hljs-keyword">float</span> rotation, Color tint); <span class="hljs-comment">// Dibuja una parte de una textura definida por un rectángulo con parámetros 'pro'</span>
+    <span class="hljs-keyword">void</span> DrawTextureNPatch(Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest, Vector2 origin, <span class="hljs-keyword">float</span> rotation, Color tint); <span class="hljs-comment">// Dibuja una textura (o parte de ella) que se estira o encoge adecuadamente</span>
+
+    <span class="hljs-comment">// Funciones relacionadas con colores/píxeles</span>
+    <span class="hljs-keyword">bool</span> ColorIsEqual(Color col1, Color col2);                            <span class="hljs-comment">// Verifica si dos colores son iguales</span>
+    Color Fade(Color color, <span class="hljs-keyword">float</span> alpha);                                 <span class="hljs-comment">// Obtiene el color con alfa aplicado, alfa va de 0.0f a 1.0f</span>
+    <span class="hljs-keyword">int</span> ColorToInt(Color color);                                          <span class="hljs-comment">// Obtiene el valor hexadecimal para un Color (0xRRGGBBAA)</span>
+    Vector4 ColorNormalize(Color color);                                  <span class="hljs-comment">// Obtiene el Color normalizado como float [0..1]</span>
+    Color ColorFromNormalized(Vector4 normalized);                        <span class="hljs-comment">// Obtiene un Color a partir de valores normalizados [0..1]</span>
+    Vector3 ColorToHSV(Color color);                                      <span class="hljs-comment">// Obtiene los valores HSV para un Color, tono [0..360], saturación/valor [0..1]</span>
+    Color ColorFromHSV(<span class="hljs-keyword">float</span> hue, <span class="hljs-keyword">float</span> saturation, <span class="hljs-keyword">float</span> value);         <span class="hljs-comment">// Obtiene un Color a partir de valores HSV, tono [0..360], saturación/valor [0..1]</span>
+    Color ColorTint(Color color, Color tint);                             <span class="hljs-comment">// Obtiene el color multiplicado por otro color</span>
+    Color ColorBrightness(Color color, <span class="hljs-keyword">float</span> factor);                     <span class="hljs-comment">// Obtiene el color con corrección de brillo, el factor de brillo va de -1.0f a 1.0f</span>
+    Color ColorContrast(Color color, <span class="hljs-keyword">float</span> contrast);                     <span class="hljs-comment">// Obtiene el color con corrección de contraste, los valores de contraste están entre -1.0f y 1.0f</span>
+    Color ColorAlpha(Color color, <span class="hljs-keyword">float</span> alpha);                           <span class="hljs-comment">// Obtiene el color con alfa aplicado, alfa va de 0.0f a 1.0f</span>
+    Color ColorAlphaBlend(Color dst, Color src, Color tint);              <span class="hljs-comment">// Obtiene el color src mezclado alfa en el color dst con matiz</span>
+    Color ColorLerp(Color color1, Color color2, <span class="hljs-keyword">float</span> factor);            <span class="hljs-comment">// Obtiene la interpolación lineal entre dos colores, factor [0.0f..1.0f]</span>
+    Color GetColor(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> hexValue);                                <span class="hljs-comment">// Obtiene la estructura Color a partir de un valor hexadecimal</span>
+    Color GetPixelColor(<span class="hljs-keyword">void</span> *srcPtr, <span class="hljs-keyword">int</span> format);                        <span class="hljs-comment">// Obtiene un Color a partir de un puntero de píxel fuente de cierto formato</span>
+    <span class="hljs-keyword">void</span> SetPixelColor(<span class="hljs-keyword">void</span> *dstPtr, Color color, <span class="hljs-keyword">int</span> format);            <span class="hljs-comment">// Establece el color formateado en el puntero de píxel destino</span>
+    <span class="hljs-keyword">int</span> GetPixelDataSize(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height, <span class="hljs-keyword">int</span> format);              <span class="hljs-comment">// Obtiene el tamaño de los datos de píxel en bytes para cierto formato</span>
+</code></pre></div>
+
+            <!-- MÓDULO: rtext -->
+            <p id="ptext">módulo: rtext <a href="#ptext">→</a></p>
+            <div id="text"><pre><code class="cpp hljs ">
+    <span class="hljs-comment">// Funciones de carga/descarga de fuentes</span>
+    Font GetFontDefault(<span class="hljs-keyword">void</span>);                                                            <span class="hljs-comment">// Obtiene la fuente por defecto</span>
+    Font LoadFont(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                                                  <span class="hljs-comment">// Carga una fuente desde un archivo en la memoria de la GPU (VRAM)</span>
+    Font LoadFontEx(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName, <span class="hljs-keyword">int</span> fontSize, <span class="hljs-keyword">int</span> *codepoints, <span class="hljs-keyword">int</span> codepointCount); <span class="hljs-comment">// Carga una fuente desde un archivo con parámetros extendidos, use NULL para codepoints y 0 para codepointCount para cargar el conjunto de caracteres por defecto, el tamaño de fuente se proporciona en altura de píxeles</span>
+    Font LoadFontFromImage(Image image, Color key, <span class="hljs-keyword">int</span> firstChar);                        <span class="hljs-comment">// Carga una fuente desde una imagen (estilo XNA)</span>
+    Font LoadFontFromMemory(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileType, <span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *fileData, <span class="hljs-keyword">int</span> dataSize, <span class="hljs-keyword">int</span> fontSize, <span class="hljs-keyword">int</span> *codepoints, <span class="hljs-keyword">int</span> codepointCount); <span class="hljs-comment">// Carga una fuente desde un búfer de memoria, fileType se refiere a la extensión: ej. '.ttf'</span>
+    <span class="hljs-keyword">bool</span> IsFontValid(Font font);                                                          <span class="hljs-comment">// Verifica si una fuente es válida (datos de fuente cargados, ADVERTENCIA: textura de GPU no verificada)</span>
+    GlyphInfo *LoadFontData(<span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *fileData, <span class="hljs-keyword">int</span> dataSize, <span class="hljs-keyword">int</span> fontSize, <span class="hljs-keyword">int</span> *codepoints, <span class="hljs-keyword">int</span> codepointCount, <span class="hljs-keyword">int</span> type); <span class="hljs-comment">// Carga datos de fuente para uso posterior</span>
+    Image GenImageFontAtlas(<span class="hljs-keyword">const</span> GlyphInfo *glyphs, Rectangle **glyphRecs, <span class="hljs-keyword">int</span> glyphCount, <span class="hljs-keyword">int</span> fontSize, <span class="hljs-keyword">int</span> padding, <span class="hljs-keyword">int</span> packMethod); <span class="hljs-comment">// Genera un atlas de imagen de fuente utilizando información de caracteres</span>
+    <span class="hljs-keyword">void</span> UnloadFontData(GlyphInfo *glyphs, <span class="hljs-keyword">int</span> glyphCount);                               <span class="hljs-comment">// Descarga los datos de información de caracteres de la fuente (RAM)</span>
+    <span class="hljs-keyword">void</span> UnloadFont(Font font);                                                           <span class="hljs-comment">// Descarga la fuente de la memoria de la GPU (VRAM)</span>
+    <span class="hljs-keyword">bool</span> ExportFontAsCode(Font font, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                               <span class="hljs-comment">// Exporta la fuente como un archivo de código, devuelve true en éxito</span>
+
+    <span class="hljs-comment">// Funciones de dibujo de texto</span>
+    <span class="hljs-keyword">void</span> DrawFPS(<span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY);                                                     <span class="hljs-comment">// Dibuja el FPS actual</span>
+    <span class="hljs-keyword">void</span> DrawText(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">int</span> posX, <span class="hljs-keyword">int</span> posY, <span class="hljs-keyword">int</span> fontSize, Color color);       <span class="hljs-comment">// Dibuja texto (usando la fuente por defecto)</span>
+    <span class="hljs-keyword">void</span> DrawTextEx(Font font, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, Vector2 position, <span class="hljs-keyword">float</span> fontSize, <span class="hljs-keyword">float</span> spacing, Color tint); <span class="hljs-comment">// Dibuja texto usando fuente y parámetros adicionales</span>
+    <span class="hljs-keyword">void</span> DrawTextPro(Font font, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, Vector2 position, Vector2 origin, <span class="hljs-keyword">float</span> rotation, <span class="hljs-keyword">float</span> fontSize, <span class="hljs-keyword">float</span> spacing, Color tint); <span class="hljs-comment">// Dibuja texto usando fuente y parámetros profesionales (rotación)</span>
+    <span class="hljs-keyword">void</span> DrawTextCodepoint(Font font, <span class="hljs-keyword">int</span> codepoint, Vector2 position, <span class="hljs-keyword">float</span> fontSize, Color tint); <span class="hljs-comment">// Dibuja un carácter (codepoint)</span>
+    <span class="hljs-keyword">void</span> DrawTextCodepoints(Font font, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *codepoints, <span class="hljs-keyword">int</span> codepointCount, Vector2 position, <span class="hljs-keyword">float</span> fontSize, <span class="hljs-keyword">float</span> spacing, Color tint); <span class="hljs-comment">// Dibuja múltiples caracteres (codepoint)</span>
+
+    <span class="hljs-comment">// Funciones de información de fuentes de texto</span>
+    <span class="hljs-keyword">void</span> SetTextLineSpacing(<span class="hljs-keyword">int</span> spacing);                                                 <span class="hljs-comment">// Establece el espaciado de línea vertical al dibujar con saltos de línea</span>
+    <span class="hljs-keyword">int</span> MeasureText(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">int</span> fontSize);                                      <span class="hljs-comment">// Mide el ancho de la cadena para la fuente por defecto</span>
+    Vector2 MeasureTextEx(Font font, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">float</span> fontSize, <span class="hljs-keyword">float</span> spacing);    <span class="hljs-comment">// Mide el tamaño de la cadena para una fuente</span>
+    <span class="hljs-keyword">int</span> GetGlyphIndex(Font font, <span class="hljs-keyword">int</span> codepoint);                                          <span class="hljs-comment">// Obtiene la posición del índice de glifo en la fuente para un codepoint (carácter Unicode), recurre a '?' si no se encuentra</span>
+    GlyphInfo GetGlyphInfo(Font font, <span class="hljs-keyword">int</span> codepoint);                                     <span class="hljs-comment">// Obtiene los datos de información del glifo de la fuente para un codepoint (carácter Unicode), recurre a '?' si no se encuentra</span>
+    Rectangle GetGlyphAtlasRec(Font font, <span class="hljs-keyword">int</span> codepoint);                                 <span class="hljs-comment">// Obtiene el rectángulo del glifo en el atlas de la fuente para un codepoint (carácter Unicode), recurre a '?' si no se encuentra</span>
+
+    <span class="hljs-comment">// Funciones de gestión de codepoints de texto (caracteres Unicode)</span>
+    <span class="hljs-keyword">char</span> *LoadUTF8(<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *codepoints, <span class="hljs-keyword">int</span> length);                <span class="hljs-comment">// Carga texto codificado en UTF-8 desde un arreglo de codepoints</span>
+    <span class="hljs-keyword">void</span> UnloadUTF8(<span class="hljs-keyword">char</span> *text);                                      <span class="hljs-comment">// Descarga el texto codificado en UTF-8 desde un arreglo de codepoints</span>
+    <span class="hljs-keyword">int</span> *LoadCodepoints(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">int</span> *count);                <span class="hljs-comment">// Carga todos los codepoints de una cadena de texto UTF-8, el conteo de codepoints se devuelve por parámetro</span>
+    <span class="hljs-keyword">void</span> UnloadCodepoints(<span class="hljs-keyword">int</span> *codepoints);                           <span class="hljs-comment">// Descarga los datos de codepoints de la memoria</span>
+    <span class="hljs-keyword">int</span> GetCodepointCount(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                          <span class="hljs-comment">// Obtiene el número total de codepoints en una cadena codificada en UTF-8</span>
+    <span class="hljs-keyword">int</span> GetCodepoint(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">int</span> *codepointSize);           <span class="hljs-comment">// Obtiene el siguiente codepoint en una cadena codificada en UTF-8, se devuelve 0x3f('?') en caso de fallo</span>
+    <span class="hljs-keyword">int</span> GetCodepointNext(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">int</span> *codepointSize);       <span class="hljs-comment">// Obtiene el siguiente codepoint en una cadena codificada en UTF-8, se devuelve 0x3f('?') en caso de fallo</span>
+    <span class="hljs-keyword">int</span> GetCodepointPrevious(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">int</span> *codepointSize);   <span class="hljs-comment">// Obtiene el codepoint anterior en una cadena codificada en UTF-8, se devuelve 0x3f('?') en caso de fallo</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *CodepointToUTF8(<span class="hljs-keyword">int</span> codepoint, <span class="hljs-keyword">int</span> *utf8Size);        <span class="hljs-comment">// Codifica un codepoint en un arreglo de bytes UTF-8 (la longitud del arreglo se devuelve como parámetro)</span>
+
+    <span class="hljs-comment">// Funciones de gestión de cadenas de texto (sin cadenas UTF-8, solo caracteres de byte)</span>
+    <span class="hljs-comment">// NOTA: Algunas cadenas asignan memoria internamente para las cadenas devueltas, ¡tenga cuidado!</span>
+    <span class="hljs-keyword">int</span> TextCopy(<span class="hljs-keyword">char</span> *dst, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *src);                                             <span class="hljs-comment">// Copia una cadena a otra, devuelve los bytes copiados</span>
+    <span class="hljs-keyword">bool</span> TextIsEqual(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text1, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text2);                               <span class="hljs-comment">// Verifica si dos cadenas de texto son iguales</span>
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> TextLength(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                                            <span class="hljs-comment">// Obtiene la longitud del texto, verifica el final '\0'</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *TextFormat(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, ...);                                        <span class="hljs-comment">// Formateo de texto con variables (estilo sprintf())</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *TextSubtext(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">int</span> position, <span class="hljs-keyword">int</span> length);                  <span class="hljs-comment">// Obtiene una parte de una cadena de texto</span>
+    <span class="hljs-keyword">char</span> *TextReplace(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *replace, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *by);             <span class="hljs-comment">// Reemplaza una cadena de texto (ADVERTENCIA: ¡la memoria debe liberarse!)</span>
+    <span class="hljs-keyword">char</span> *TextInsert(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *insert, <span class="hljs-keyword">int</span> position);                 <span class="hljs-comment">// Inserta texto en una posición (ADVERTENCIA: ¡la memoria debe liberarse!)</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *TextJoin(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **textList, <span class="hljs-keyword">int</span> count, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *delimiter);        <span class="hljs-comment">// Une cadenas de texto con un delimitador</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **TextSplit(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">char</span> delimiter, <span class="hljs-keyword">int</span> *count);                 <span class="hljs-comment">// Divide el texto en múltiples cadenas</span>
+    <span class="hljs-keyword">void</span> TextAppend(<span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *append, <span class="hljs-keyword">int</span> *position);                       <span class="hljs-comment">// Añade texto en una posición específica y mueve el cursor</span>
+    <span class="hljs-keyword">int</span> TextFindIndex(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *find);                                <span class="hljs-comment">// Encuentra la primera ocurrencia de texto dentro de una cadena</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *TextToUpper(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                      <span class="hljs-comment">// Obtiene la versión en mayúsculas de la cadena proporcionada</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *TextToLower(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                      <span class="hljs-comment">// Obtiene la versión en minúsculas de la cadena proporcionada</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *TextToPascal(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                     <span class="hljs-comment">// Obtiene la versión en notación Pascal de la cadena proporcionada</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *TextToSnake(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                      <span class="hljs-comment">// Obtiene la versión en notación Snake de la cadena proporcionada</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *TextToCamel(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                      <span class="hljs-comment">// Obtiene la versión en notación Camel de la cadena proporcionada</span>
+
+    <span class="hljs-keyword">int</span> TextToInteger(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                            <span class="hljs-comment">// Obtiene el valor entero del texto (no se admiten valores negativos)</span>
+    <span class="hljs-keyword">float</span> TextToFloat(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *text);                            <span class="hljs-comment">// Obtiene el valor flotante del texto (no se admiten valores negativos)</span>
+</code></pre></div>
+
+            <!-- MÓDULO: rmodels -->
+            <p id="pmodels">módulo: rmodels <a href="#pmodels">→</a></p>
+            <div id="models"><pre><code class="cpp hljs ">
+    <span class="hljs-comment">// Funciones de dibujo de formas geométricas 3D básicas</span>
+    <span class="hljs-keyword">void</span> DrawLine3D(Vector3 startPos, Vector3 endPos, Color color);                                    <span class="hljs-comment">// Dibuja una línea en el espacio mundial 3D</span>
+    <span class="hljs-keyword">void</span> DrawPoint3D(Vector3 position, Color color);                                                   <span class="hljs-comment">// Dibuja un punto en el espacio 3D, en realidad una pequeña línea</span>
+    <span class="hljs-keyword">void</span> DrawCircle3D(Vector3 center, <span class="hljs-keyword">float</span> radius, Vector3 rotationAxis, <span class="hljs-keyword">float</span> rotationAngle, Color color); <span class="hljs-comment">// Dibuja un círculo en el espacio mundial 3D</span>
+    <span class="hljs-keyword">void</span> DrawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color color);                              <span class="hljs-comment">// Dibuja un triángulo relleno de color (vértices en orden antihorario)</span>
+    <span class="hljs-keyword">void</span> DrawTriangleStrip3D(<span class="hljs-keyword">const</span> Vector3 *points, <span class="hljs-keyword">int</span> pointCount, Color color);                      <span class="hljs-comment">// Dibuja una tira de triángulos definida por puntos</span>
+    <span class="hljs-keyword">void</span> DrawCube(Vector3 position, <span class="hljs-keyword">float</span> width, <span class="hljs-keyword">float</span> height, <span class="hljs-keyword">float</span> length, Color color);             <span class="hljs-comment">// Dibuja un cubo</span>
+    <span class="hljs-keyword">void</span> DrawCubeV(Vector3 position, Vector3 size, Color color);                                       <span class="hljs-comment">// Dibuja un cubo (versión Vector)</span>
+    <span class="hljs-keyword">void</span> DrawCubeWires(Vector3 position, <span class="hljs-keyword">float</span> width, <span class="hljs-keyword">float</span> height, <span class="hljs-keyword">float</span> length, Color color);        <span class="hljs-comment">// Dibuja las líneas del cubo</span>
+    <span class="hljs-keyword">void</span> DrawCubeWiresV(Vector3 position, Vector3 size, Color color);                                  <span class="hljs-comment">// Dibuja las líneas del cubo (versión Vector)</span>
+    <span class="hljs-keyword">void</span> DrawSphere(Vector3 centerPos, <span class="hljs-keyword">float</span> radius, Color color);                                     <span class="hljs-comment">// Dibuja una esfera</span>
+    <span class="hljs-keyword">void</span> DrawSphereEx(Vector3 centerPos, <span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">int</span> rings, <span class="hljs-keyword">int</span> slices, Color color);            <span class="hljs-comment">// Dibuja una esfera con parámetros extendidos</span>
+    <span class="hljs-keyword">void</span> DrawSphereWires(Vector3 centerPos, <span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">int</span> rings, <span class="hljs-keyword">int</span> slices, Color color);         <span class="hljs-comment">// Dibuja las líneas de la esfera</span>
+    <span class="hljs-keyword">void</span> DrawCylinder(Vector3 position, <span class="hljs-keyword">float</span> radiusTop, <span class="hljs-keyword">float</span> radiusBottom, <span class="hljs-keyword">float</span> height, <span class="hljs-keyword">int</span> slices, Color color); <span class="hljs-comment">// Dibuja un cilindro/cono</span>
+    <span class="hljs-keyword">void</span> DrawCylinderEx(Vector3 startPos, Vector3 endPos, <span class="hljs-keyword">float</span> startRadius, <span class="hljs-keyword">float</span> endRadius, <span class="hljs-keyword">int</span> sides, Color color); <span class="hljs-comment">// Dibuja un cilindro con base en startPos y parte superior en endPos</span>
+    <span class="hljs-keyword">void</span> DrawCylinderWires(Vector3 position, <span class="hljs-keyword">float</span> radiusTop, <span class="hljs-keyword">float</span> radiusBottom, <span class="hljs-keyword">float</span> height, <span class="hljs-keyword">int</span> slices, Color color); <span class="hljs-comment">// Dibuja las líneas de un cilindro/cono</span>
+    <span class="hljs-keyword">void</span> DrawCylinderWiresEx(Vector3 startPos, Vector3 endPos, <span class="hljs-keyword">float</span> startRadius, <span class="hljs-keyword">float</span> endRadius, <span class="hljs-keyword">int</span> sides, Color color); <span class="hljs-comment">// Dibuja las líneas de un cilindro con base en startPos y parte superior en endPos</span>
+    <span class="hljs-keyword">void</span> DrawCapsule(Vector3 startPos, Vector3 endPos, <span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">int</span> slices, <span class="hljs-keyword">int</span> rings, Color color); <span class="hljs-comment">// Dibuja una cápsula con el centro de sus casquetes esféricos en startPos y endPos</span>
+    <span class="hljs-keyword">void</span> DrawCapsuleWires(Vector3 startPos, Vector3 endPos, <span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">int</span> slices, <span class="hljs-keyword">int</span> rings, Color color); <span class="hljs-comment">// Dibuja la estructura alámbrica de una cápsula</span>
+    <span class="hljs-keyword">void</span> DrawPlane(Vector3 centerPos, Vector2 size, Color color);                                      <span class="hljs-comment">// Dibuja un plano XZ</span>
+    <span class="hljs-keyword">void</span> DrawRay(Ray ray, Color color);                                                                <span class="hljs-comment">// Dibuja una línea de rayo</span>
+    <span class="hljs-keyword">void</span> DrawGrid(<span class="hljs-keyword">int</span> slices, <span class="hljs-keyword">float</span> spacing);                                                          <span class="hljs-comment">// Dibuja una cuadrícula (centrada en (0, 0, 0))</span>
+
+    <span class="hljs-comment">// Funciones de carga y dibujo de modelos 3D (Módulo: models)</span>
+
+    <span class="hljs-comment">// Funciones de gestión de modelos</span>
+    Model LoadModel(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                                                <span class="hljs-comment">// Carga un modelo desde archivos (mallas y materiales)</span>
+    Model LoadModelFromMesh(Mesh mesh);                                                   <span class="hljs-comment">// Carga un modelo desde una malla generada (material por defecto)</span>
+    <span class="hljs-keyword">bool</span> IsModelValid(Model model);                                                       <span class="hljs-comment">// Verifica si un modelo es válido (cargado en GPU, VAO/VBOs)</span>
+    <span class="hljs-keyword">void</span> UnloadModel(Model model);                                                        <span class="hljs-comment">// Descarga el modelo (incluyendo mallas) de la memoria (RAM y/o VRAM)</span>
+    BoundingBox GetModelBoundingBox(Model model);                                         <span class="hljs-comment">// Calcula los límites de la caja delimitadora del modelo (considera todas las mallas)</span>
+
+    <span class="hljs-comment">// Funciones de dibujo de modelos</span>
+    <span class="hljs-keyword">void</span> DrawModel(Model model, Vector3 position, <span class="hljs-keyword">float</span> scale, Color tint);               <span class="hljs-comment">// Dibuja un modelo (con textura si está establecida)</span>
+    <span class="hljs-keyword">void</span> DrawModelEx(Model model, Vector3 position, Vector3 rotationAxis, <span class="hljs-keyword">float</span> rotationAngle, Vector3 scale, Color tint); <span class="hljs-comment">// Dibuja un modelo con parámetros extendidos</span>
+    <span class="hljs-keyword">void</span> DrawModelWires(Model model, Vector3 position, <span class="hljs-keyword">float</span> scale, Color tint);          <span class="hljs-comment">// Dibuja las líneas de un modelo (con textura si está establecida)</span>
+    <span class="hljs-keyword">void</span> DrawModelWiresEx(Model model, Vector3 position, Vector3 rotationAxis, <span class="hljs-keyword">float</span> rotationAngle, Vector3 scale, Color tint); <span class="hljs-comment">// Dibuja las líneas de un modelo con parámetros extendidos</span>
+    <span class="hljs-keyword">void</span> DrawModelPoints(Model model, Vector3 position, <span class="hljs-keyword">float</span> scale, Color tint); <span class="hljs-comment">// Dibuja un modelo como puntos</span>
+    <span class="hljs-keyword">void</span> DrawModelPointsEx(Model model, Vector3 position, Vector3 rotationAxis, <span class="hljs-keyword">float</span> rotationAngle, Vector3 scale, Color tint); <span class="hljs-comment">// Dibuja un modelo como puntos con parámetros extendidos</span>
+    <span class="hljs-keyword">void</span> DrawBoundingBox(BoundingBox box, Color color);                                   <span class="hljs-comment">// Dibuja la caja delimitadora (líneas)</span>
+    <span class="hljs-keyword">void</span> DrawBillboard(Camera camera, Texture2D texture, Vector3 position, <span class="hljs-keyword">float</span> scale, Color tint);   <span class="hljs-comment">// Dibuja una textura de cartel</span>
+    <span class="hljs-keyword">void</span> DrawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint); <span class="hljs-comment">// Dibuja un cartel definido por origen</span>
+    <span class="hljs-keyword">void</span> DrawBillboardPro(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, <span class="hljs-keyword">float</span> rotation, Color tint); <span class="hljs-comment">// Dibuja un cartel con origen y rotación</span>
+
+    <span class="hljs-comment">// Funciones de gestión de mallas</span>
+    <span class="hljs-keyword">void</span> UploadMesh(Mesh *mesh, <span class="hljs-keyword">bool</span> dynamic);                                            <span class="hljs-comment">// Sube los datos de vértices de la malla a la GPU</span>
+    <span class="hljs-keyword">void</span> UpdateMeshBuffer(Mesh mesh, <span class="hljs-keyword">int</span> index, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *data, <span class="hljs-keyword">int</span> dataSize, <span class="hljs-keyword">int</span> offset); <span class="hljs-comment">// Actualiza datos de vértices en GPU</span>
+    <span class="hljs-keyword">void</span> UnloadMesh(Mesh mesh);                                                           <span class="hljs-comment">// Descarga los datos de la malla de CPU y GPU</span>
+    <span class="hljs-keyword">void</span> DrawMesh(Mesh mesh, Material material, Matrix transform);                        <span class="hljs-comment">// Dibuja una malla 3D con material y transformación</span>
+    <span class="hljs-keyword">void</span> DrawMeshInstanced(Mesh mesh, Material material, <span class="hljs-keyword">const</span> Matrix *transforms, <span class="hljs-keyword">int</span> instances); <span class="hljs-comment">// Dibuja múltiples instancias de malla</span>
+    BoundingBox GetMeshBoundingBox(Mesh mesh);                                            <span class="hljs-comment">// Calcula los límites de la caja delimitadora de la malla</span>
+    <span class="hljs-keyword">void</span> GenMeshTangents(Mesh *mesh);                                                     <span class="hljs-comment">// Calcula las tangentes de la malla</span>
+    <span class="hljs-keyword">bool</span> ExportMesh(Mesh mesh, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                                     <span class="hljs-comment">// Exporta los datos de la malla a un archivo</span>
+    <span class="hljs-keyword">bool</span> ExportMeshAsCode(Mesh mesh, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                               <span class="hljs-comment">// Exporta la malla como código (.h)</span>
+
+    <span class="hljs-comment">// Funciones de generación de mallas</span>
+    Mesh GenMeshPoly(<span class="hljs-keyword">int</span> sides, <span class="hljs-keyword">float</span> radius);                                            <span class="hljs-comment">// Genera una malla poligonal</span>
+    Mesh GenMeshPlane(<span class="hljs-keyword">float</span> width, <span class="hljs-keyword">float</span> length, <span class="hljs-keyword">int</span> resX, <span class="hljs-keyword">int</span> resZ);                     <span class="hljs-comment">// Genera una malla de plano (con subdivisiones)</span>
+    Mesh GenMeshCube(<span class="hljs-keyword">float</span> width, <span class="hljs-keyword">float</span> height, <span class="hljs-keyword">float</span> length);                            <span class="hljs-comment">// Genera una malla de cuboide</span>
+    Mesh GenMeshSphere(<span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">int</span> rings, <span class="hljs-keyword">int</span> slices);                              <span class="hljs-comment">// Genera una malla de esfera</span>
+    Mesh GenMeshHemiSphere(<span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">int</span> rings, <span class="hljs-keyword">int</span> slices);                          <span class="hljs-comment">// Genera una malla de semiesfera</span>
+    Mesh GenMeshCylinder(<span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> height, <span class="hljs-keyword">int</span> slices);                         <span class="hljs-comment">// Genera una malla de cilindro</span>
+    Mesh GenMeshCone(<span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> height, <span class="hljs-keyword">int</span> slices);                             <span class="hljs-comment">// Genera una malla de cono/pirámide</span>
+    Mesh GenMeshTorus(<span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> size, <span class="hljs-keyword">int</span> radSeg, <span class="hljs-keyword">int</span> sides);                   <span class="hljs-comment">// Genera una malla de toro</span>
+    Mesh GenMeshKnot(<span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> size, <span class="hljs-keyword">int</span> radSeg, <span class="hljs-keyword">int</span> sides);                    <span class="hljs-comment">// Genera una malla de nudo trébol</span>
+    Mesh GenMeshHeightmap(Image heightmap, Vector3 size);                                 <span class="hljs-comment">// Genera una malla de mapa de altura</span>
+    Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);                               <span class="hljs-comment">// Genera una malla de mapa basado en cubos</span>
+
+    <span class="hljs-comment">// Funciones de carga/descarga de materiales</span>
+    Material *LoadMaterials(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName, <span class="hljs-keyword">int</span> *materialCount);                    <span class="hljs-comment">// Carga materiales desde archivo</span>
+    Material LoadMaterialDefault(<span class="hljs-keyword">void</span>);                                                   <span class="hljs-comment">// Carga el material por defecto</span>
+    <span class="hljs-keyword">bool</span> IsMaterialValid(Material material);                                              <span class="hljs-comment">// Verifica si un material es válido</span>
+    <span class="hljs-keyword">void</span> UnloadMaterial(Material material);                                               <span class="hljs-comment">// Descarga el material de GPU</span>
+    <span class="hljs-keyword">void</span> SetMaterialTexture(Material *material, <span class="hljs-keyword">int</span> mapType, Texture2D texture);          <span class="hljs-comment">// Establece textura para un material</span>
+    <span class="hljs-keyword">void</span> SetModelMeshMaterial(Model *model, <span class="hljs-keyword">int</span> meshId, <span class="hljs-keyword">int</span> materialId);                  <span class="hljs-comment">// Establece el material para una malla</span>
+
+    <span class="hljs-comment">// Funciones de carga/descarga de animaciones</span>
+    ModelAnimation *LoadModelAnimations(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName, <span class="hljs-keyword">int</span> *animCount);            <span class="hljs-comment">// Carga animaciones de modelo</span>
+    <span class="hljs-keyword">void</span> UpdateModelAnimation(Model model, ModelAnimation anim, <span class="hljs-keyword">int</span> frame);               <span class="hljs-comment">// Actualiza la pose de la animación (CPU)</span>
+    <span class="hljs-keyword">void</span> UpdateModelAnimationBones(Model model, ModelAnimation anim, <span class="hljs-keyword">int</span> frame);          <span class="hljs-comment">// Actualiza matrices de huesos (GPU skinning)</span>
+    <span class="hljs-keyword">void</span> UnloadModelAnimation(ModelAnimation anim);                                       <span class="hljs-comment">// Descarga datos de animación</span>
+    <span class="hljs-keyword">void</span> UnloadModelAnimations(ModelAnimation *animations, <span class="hljs-keyword">int</span> animCount);                <span class="hljs-comment">// Descarga arreglo de animaciones</span>
+    <span class="hljs-keyword">bool</span> IsModelAnimationValid(Model model, ModelAnimation anim);                         <span class="hljs-comment">// Verifica si la animación coincide con el esqueleto</span>
+
+    <span class="hljs-comment">// Funciones de detección de colisiones</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionSpheres(Vector3 center1, <span class="hljs-keyword">float</span> radius1, Vector3 center2, <span class="hljs-keyword">float</span> radius2);   <span class="hljs-comment">// Colisión entre dos esferas</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);                                 <span class="hljs-comment">// Colisión entre dos cajas</span>
+    <span class="hljs-keyword">bool</span> CheckCollisionBoxSphere(BoundingBox box, Vector3 center, <span class="hljs-keyword">float</span> radius);                  <span class="hljs-comment">// Colisión entre caja y esfera</span>
+    RayCollision GetRayCollisionSphere(Ray ray, Vector3 center, <span class="hljs-keyword">float</span> radius);                    <span class="hljs-comment">// Colisión rayo-esfera</span>
+    RayCollision GetRayCollisionBox(Ray ray, BoundingBox box);                                    <span class="hljs-comment">// Colisión rayo-caja</span>
+    RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix transform);                       <span class="hljs-comment">// Colisión rayo-malla</span>
+    RayCollision GetRayCollisionTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3);            <span class="hljs-comment">// Colisión rayo-triángulo</span>
+    RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4);    <span class="hljs-comment">// Colisión rayo-cuadrilátero</span>
+</code></pre></div>
+
+            <!-- MÓDULO: raudio -->
+            <p id="paudio">módulo: raudio <a href="#paudio">→</a></p>
+            <div id="audio"><pre><code class="cpp hljs ">
+    <span class="hljs-comment">// Funciones de gestión del dispositivo de audio</span>
+    <span class="hljs-keyword">void</span> InitAudioDevice(<span class="hljs-keyword">void</span>);                                     <span class="hljs-comment">// Inicializa el dispositivo y contexto de audio</span>
+    <span class="hljs-keyword">void</span> CloseAudioDevice(<span class="hljs-keyword">void</span>);                                    <span class="hljs-comment">// Cierra el dispositivo y contexto de audio</span>
+    <span class="hljs-keyword">bool</span> IsAudioDeviceReady(<span class="hljs-keyword">void</span>);                                  <span class="hljs-comment">// Verifica si el dispositivo de audio está listo</span>
+    <span class="hljs-keyword">void</span> SetMasterVolume(<span class="hljs-keyword">float</span> volume);                             <span class="hljs-comment">// Establece el volumen maestro (oyente)</span>
+    <span class="hljs-keyword">float</span> GetMasterVolume(<span class="hljs-keyword">void</span>);                                    <span class="hljs-comment">// Obtiene el volumen maestro</span>
+
+    <span class="hljs-comment">// Funciones de carga/descarga de onda/sonido</span>
+    Wave LoadWave(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                            <span class="hljs-comment">// Carga datos de onda desde archivo</span>
+    Wave LoadWaveFromMemory(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileType, <span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *fileData, <span class="hljs-keyword">int</span> dataSize); <span class="hljs-comment">// Carga onda desde memoria</span>
+    <span class="hljs-keyword">bool</span> IsWaveValid(Wave wave);                                    <span class="hljs-comment">// Verifica si los datos de onda son válidos</span>
+    Sound LoadSound(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                          <span class="hljs-comment">// Carga un sonido desde archivo</span>
+    Sound LoadSoundFromWave(Wave wave);                             <span class="hljs-comment">// Carga un sonido desde datos de onda</span>
+    Sound LoadSoundAlias(Sound source);                             <span class="hljs-comment">// Crea un nuevo sonido que comparte los mismos datos de muestra</span>
+    <span class="hljs-keyword">bool</span> IsSoundValid(Sound sound);                                 <span class="hljs-comment">// Verifica si un sonido es válido</span>
+    <span class="hljs-keyword">void</span> UpdateSound(Sound sound, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *data, <span class="hljs-keyword">int</span> sampleCount); <span class="hljs-comment">// Actualiza el búfer de sonido</span>
+    <span class="hljs-keyword">void</span> UnloadWave(Wave wave);                                     <span class="hljs-comment">// Descarga los datos de onda</span>
+    <span class="hljs-keyword">void</span> UnloadSound(Sound sound);                                  <span class="hljs-comment">// Descarga el sonido</span>
+    <span class="hljs-keyword">void</span> UnloadSoundAlias(Sound alias);                             <span class="hljs-comment">// Descarga un alias de sonido</span>
+    <span class="hljs-keyword">bool</span> ExportWave(Wave wave, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);               <span class="hljs-comment">// Exporta datos de onda a archivo</span>
+    <span class="hljs-keyword">bool</span> ExportWaveAsCode(Wave wave, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);         <span class="hljs-comment">// Exporta onda como código (.h)</span>
+
+    <span class="hljs-comment">// Funciones de gestión de onda/sonido</span>
+    <span class="hljs-keyword">void</span> PlaySound(Sound sound);                                    <span class="hljs-comment">// Reproduce un sonido</span>
+    <span class="hljs-keyword">void</span> StopSound(Sound sound);                                    <span class="hljs-comment">// Detiene un sonido</span>
+    <span class="hljs-keyword">void</span> PauseSound(Sound sound);                                   <span class="hljs-comment">// Pausa un sonido</span>
+    <span class="hljs-keyword">void</span> ResumeSound(Sound sound);                                  <span class="hljs-comment">// Reanuda un sonido</span>
+    <span class="hljs-keyword">bool</span> IsSoundPlaying(Sound sound);                               <span class="hljs-comment">// Verifica si el sonido se está reproduciendo</span>
+    <span class="hljs-keyword">void</span> SetSoundVolume(Sound sound, <span class="hljs-keyword">float</span> volume);                 <span class="hljs-comment">// Establece el volumen del sonido</span>
+    <span class="hljs-keyword">void</span> SetSoundPitch(Sound sound, <span class="hljs-keyword">float</span> pitch);                   <span class="hljs-comment">// Establece el tono del sonido</span>
+    <span class="hljs-keyword">void</span> SetSoundPan(Sound sound, <span class="hljs-keyword">float</span> pan);                       <span class="hljs-comment">// Establece la panorámica del sonido</span>
+    Wave WaveCopy(Wave wave);                                       <span class="hljs-comment">// Copia una onda a una nueva onda</span>
+    <span class="hljs-keyword">void</span> WaveCrop(Wave *wave, <span class="hljs-keyword">int</span> initFrame, <span class="hljs-keyword">int</span> finalFrame);       <span class="hljs-comment">// Recorta una onda a un rango</span>
+    <span class="hljs-keyword">void</span> WaveFormat(Wave *wave, <span class="hljs-keyword">int</span> sampleRate, <span class="hljs-keyword">int</span> sampleSize, <span class="hljs-keyword">int</span> channels); <span class="hljs-comment">// Convierte formato de onda</span>
+    <span class="hljs-keyword">float</span> *LoadWaveSamples(Wave wave);                              <span class="hljs-comment">// Carga muestras de onda como float[]</span>
+    <span class="hljs-keyword">void</span> UnloadWaveSamples(<span class="hljs-keyword">float</span> *samples);                         <span class="hljs-comment">// Descarga muestras de onda</span>
+
+    <span class="hljs-comment">// Funciones de gestión de música</span>
+    Music LoadMusicStream(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileName);                    <span class="hljs-comment">// Carga un flujo de música</span>
+    Music LoadMusicStreamFromMemory(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *fileType, <span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *data, <span class="hljs-keyword">int</span> dataSize); <span class="hljs-comment">// Carga música desde memoria</span>
+    <span class="hljs-keyword">bool</span> IsMusicValid(Music music);                                 <span class="hljs-comment">// Verifica si un flujo de música es válido</span>
+    <span class="hljs-keyword">void</span> UnloadMusicStream(Music music);                            <span class="hljs-comment">// Descarga el flujo de música</span>
+    <span class="hljs-keyword">void</span> PlayMusicStream(Music music);                              <span class="hljs-comment">// Inicia la reproducción de música</span>
+    <span class="hljs-keyword">bool</span> IsMusicStreamPlaying(Music music);                         <span class="hljs-comment">// Verifica si la música se está reproduciendo</span>
+    <span class="hljs-keyword">void</span> UpdateMusicStream(Music music);                            <span class="hljs-comment">// Actualiza los búferes de música</span>
+    <span class="hljs-keyword">void</span> StopMusicStream(Music music);                              <span class="hljs-comment">// Detiene la música</span>
+    <span class="hljs-keyword">void</span> PauseMusicStream(Music music);                             <span class="hljs-comment">// Pausa la música</span>
+    <span class="hljs-keyword">void</span> ResumeMusicStream(Music music);                            <span class="hljs-comment">// Reanuda la música</span>
+    <span class="hljs-keyword">void</span> SeekMusicStream(Music music, <span class="hljs-keyword">float</span> position);              <span class="hljs-comment">// Busca una posición en la música</span>
+    <span class="hljs-keyword">void</span> SetMusicVolume(Music music, <span class="hljs-keyword">float</span> volume);                 <span class="hljs-comment">// Establece el volumen de la música</span>
+    <span class="hljs-keyword">void</span> SetMusicPitch(Music music, <span class="hljs-keyword">float</span> pitch);                   <span class="hljs-comment">// Establece el tono de la música</span>
+    <span class="hljs-keyword">void</span> SetMusicPan(Music music, <span class="hljs-keyword">float</span> pan);                       <span class="hljs-comment">// Establece la panorámica de la música</span>
+    <span class="hljs-keyword">float</span> GetMusicTimeLength(Music music);                          <span class="hljs-comment">// Obtiene la duración total de la música</span>
+    <span class="hljs-keyword">float</span> GetMusicTimePlayed(Music music);                          <span class="hljs-comment">// Obtiene el tiempo reproducido actual</span>
+
+    <span class="hljs-comment">// Funciones de gestión de AudioStream</span>
+    AudioStream LoadAudioStream(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> sampleRate, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> sampleSize, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> channels); <span class="hljs-comment">// Carga flujo de audio</span>
+    <span class="hljs-keyword">bool</span> IsAudioStreamValid(AudioStream stream);                    <span class="hljs-comment">// Verifica si el flujo de audio es válido</span>
+    <span class="hljs-keyword">void</span> UnloadAudioStream(AudioStream stream);                     <span class="hljs-comment">// Descarga el flujo de audio</span>
+    <span class="hljs-keyword">void</span> UpdateAudioStream(AudioStream stream, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *data, <span class="hljs-keyword">int</span> frameCount); <span class="hljs-comment">// Actualiza búferes</span>
+    <span class="hljs-keyword">bool</span> IsAudioStreamProcessed(AudioStream stream);                <span class="hljs-comment">// Verifica si los búferes requieren reabastecimiento</span>
+    <span class="hljs-keyword">void</span> PlayAudioStream(AudioStream stream);                       <span class="hljs-comment">// Reproduce flujo de audio</span>
+    <span class="hljs-keyword">void</span> PauseAudioStream(AudioStream stream);                      <span class="hljs-comment">// Pausa flujo de audio</span>
+    <span class="hljs-keyword">void</span> ResumeAudioStream(AudioStream stream);                     <span class="hljs-comment">// Reanuda flujo de audio</span>
+    <span class="hljs-keyword">bool</span> IsAudioStreamPlaying(AudioStream stream);                  <span class="hljs-comment">// Verifica si el flujo se está reproduciendo</span>
+    <span class="hljs-keyword">void</span> StopAudioStream(AudioStream stream);                       <span class="hljs-comment">// Detiene flujo de audio</span>
+    <span class="hljs-keyword">void</span> SetAudioStreamVolume(AudioStream stream, <span class="hljs-keyword">float</span> volume);    <span class="hljs-comment">// Establece volumen del flujo</span>
+    <span class="hljs-keyword">void</span> SetAudioStreamPitch(AudioStream stream, <span class="hljs-keyword">float</span> pitch);      <span class="hljs-comment">// Establece tono del flujo</span>
+    <span class="hljs-keyword">void</span> SetAudioStreamPan(AudioStream stream, <span class="hljs-keyword">float</span> pan);          <span class="hljs-comment">// Establece panorámica del flujo</span>
+    <span class="hljs-keyword">void</span> SetAudioStreamBufferSizeDefault(<span class="hljs-keyword">int</span> size);                 <span class="hljs-comment">// Tamaño por defecto para nuevos flujos</span>
+    <span class="hljs-keyword">void</span> SetAudioStreamCallback(AudioStream stream, AudioCallback callback); <span class="hljs-comment">// Callback para solicitar nuevos datos</span>
+
+    <span class="hljs-keyword">void</span> AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor); <span class="hljs-comment">// Adjunta procesador al flujo</span>
+    <span class="hljs-keyword">void</span> DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor); <span class="hljs-comment">// Desadjunta procesador del flujo</span>
+
+    <span class="hljs-keyword">void</span> AttachAudioMixedProcessor(AudioCallback processor); <span class="hljs-comment">// Adjunta procesador a toda la tubería de audio</span>
+    <span class="hljs-keyword">void</span> DetachAudioMixedProcessor(AudioCallback processor); <span class="hljs-comment">// Desadjunta procesador de la tubería de audio</span>
+</code></pre></div>
+
+            <!-- ESTRUCTURAS y COLORES -->
+            <div id="fullgroup">
+                <div class="leftgroup">
+                    <p id="pstructs">estructuras</p>
+                    <div id="structs"><pre><code class="cpp hljs ">    <span class="hljs-keyword">struct</span> Vector2;                <span class="hljs-comment">// Vector2, 2 componentes</span>
+    <span class="hljs-keyword">struct</span> Vector3;                <span class="hljs-comment">// Vector3, 3 componentes</span>
+    <span class="hljs-keyword">struct</span> Vector4;                <span class="hljs-comment">// Vector4, 4 componentes</span>
+    <span class="hljs-keyword">struct</span> Matrix;                 <span class="hljs-comment">// Matriz, componentes 4x4, columna mayor, estilo OpenGL, diestra</span>
+    <span class="hljs-keyword">struct</span> Color;                  <span class="hljs-comment">// Color, 4 componentes, R8G8B8A8 (32 bits)</span>
+    <span class="hljs-keyword">struct</span> Rectangle;              <span class="hljs-comment">// Rectángulo, 4 componentes</span>
+
+    <span class="hljs-keyword">struct</span> Image;                  <span class="hljs-comment">// Imagen, datos de píxeles almacenados en CPU (RAM)</span>
+    <span class="hljs-keyword">struct</span> Texture;                <span class="hljs-comment">// Textura, datos de textura almacenados en GPU (VRAM)</span>
+    <span class="hljs-keyword">struct</span> RenderTexture;          <span class="hljs-comment">// RenderTexture, fbo para renderizado de texturas</span>
+    <span class="hljs-keyword">struct</span> NPatchInfo;             <span class="hljs-comment">// NPatchInfo, información de diseño de n-parche</span>
+    <span class="hljs-keyword">struct</span> GlyphInfo;              <span class="hljs-comment">// GlyphInfo, información de glifos de caracteres</span>
+    <span class="hljs-keyword">struct</span> Font;                   <span class="hljs-comment">// Fuente, textura de fuente y arreglo de datos GlyphInfo</span>
+
+    <span class="hljs-keyword">struct</span> Camera2D;               <span class="hljs-comment">// Camera2D, define posición/orientación en espacio 2D</span>
+    <span class="hljs-keyword">struct</span> Camera3D;               <span class="hljs-comment">// Camera, define posición/orientación en espacio 3D</span>
+
+    <span class="hljs-keyword">struct</span> Shader;                 <span class="hljs-comment">// Shader</span>
+    <span class="hljs-keyword">struct</span> MaterialMap;            <span class="hljs-comment">// MaterialMap</span>
+    <span class="hljs-keyword">struct</span> Material;               <span class="hljs-comment">// Material, incluye shader y mapas</span>
+    <span class="hljs-keyword">struct</span> Mesh;                   <span class="hljs-comment">// Malla, datos de vértices y vao/vbo</span>
+    <span class="hljs-keyword">struct</span> Model;                  <span class="hljs-comment">// Modelo, mallas, materiales y datos de animación</span>
+    <span class="hljs-keyword">struct</span> ModelAnimation;         <span class="hljs-comment">// ModelAnimation</span>
+    <span class="hljs-keyword">struct</span> Transform;              <span class="hljs-comment">// Transform, datos de transformación de vértices</span>
+    <span class="hljs-keyword">struct</span> BoneInfo;               <span class="hljs-comment">// Bone, hueso de animación esquelética</span>
+    <span class="hljs-keyword">struct</span> Ray;                    <span class="hljs-comment">// Rayo, rayo para raycasting</span>
+    <span class="hljs-keyword">struct</span> RayCollision;           <span class="hljs-comment">// RayCollision, información de impacto del rayo</span>
+    <span class="hljs-keyword">struct</span> BoundingBox;            <span class="hljs-comment">// BoundingBox</span>
+
+    <span class="hljs-keyword">struct</span> Wave;                   <span class="hljs-comment">// Onda, datos de onda de audio</span>
+    <span class="hljs-keyword">struct</span> AudioStream;            <span class="hljs-comment">// AudioStream, flujo de audio personalizado</span>
+    <span class="hljs-keyword">struct</span> Sound;                  <span class="hljs-comment">// Sound</span>
+    <span class="hljs-keyword">struct</span> Music;                  <span class="hljs-comment">// Música, flujo de audio</span>
+
+    <span class="hljs-keyword">struct</span> VrDeviceInfo;           <span class="hljs-comment">// VrDeviceInfo, parámetros de dispositivo HMD</span>
+    <span class="hljs-keyword">struct</span> VrStereoConfig;         <span class="hljs-comment">// VrStereoConfig, configuración de renderizado estéreo para VR</span>
+
+    <span class="hljs-keyword">struct</span> FilePathList;           <span class="hljs-comment">// Lista de rutas de archivos</span>
+
+    <span class="hljs-keyword">struct</span> AutomationEvent;        <span class="hljs-comment">// Evento de automatización</span>
+    <span class="hljs-keyword">struct</span> AutomationEventList;    <span class="hljs-comment">// Lista de eventos de automatización</span>
+</code></pre></div>
+                </div>
+                <div class="rightgroup">
+                    <p id="pcolors">colores</p>
+                    <div id="colors"><pre><code class="cpp hljs ">    <span class="hljs-comment">// Paleta de colores personalizada de raylib para visuales increíbles sobre fondo BLANCO</span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> LIGHTGRAY  (Color){ 200, 200, 200, 255 }   <span class="hljs-comment">// Gris claro</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> GRAY       (Color){ 130, 130, 130, 255 }   <span class="hljs-comment">// Gris</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> DARKGRAY   (Color){ 80, 80, 80, 255 }      <span class="hljs-comment">// Gris oscuro</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> YELLOW     (Color){ 253, 249, 0, 255 }     <span class="hljs-comment">// Amarillo</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> GOLD       (Color){ 255, 203, 0, 255 }     <span class="hljs-comment">// Dorado</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> ORANGE     (Color){ 255, 161, 0, 255 }     <span class="hljs-comment">// Naranja</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> PINK       (Color){ 255, 109, 194, 255 }   <span class="hljs-comment">// Rosa</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> RED        (Color){ 230, 41, 55, 255 }     <span class="hljs-comment">// Rojo</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> MAROON     (Color){ 190, 33, 55, 255 }     <span class="hljs-comment">// Granate</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> GREEN      (Color){ 0, 228, 48, 255 }      <span class="hljs-comment">// Verde</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> LIME       (Color){ 0, 158, 47, 255 }      <span class="hljs-comment">// Lima</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> DARKGREEN  (Color){ 0, 117, 44, 255 }      <span class="hljs-comment">// Verde oscuro</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> SKYBLUE    (Color){ 102, 191, 255, 255 }   <span class="hljs-comment">// Azul cielo</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> BLUE       (Color){ 0, 121, 241, 255 }     <span class="hljs-comment">// Azul</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> DARKBLUE   (Color){ 0, 82, 172, 255 }      <span class="hljs-comment">// Azul oscuro</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> PURPLE     (Color){ 200, 122, 255, 255 }   <span class="hljs-comment">// Púrpura</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> VIOLET     (Color){ 135, 60, 190, 255 }    <span class="hljs-comment">// Violeta</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> DARKPURPLE (Color){ 112, 31, 126, 255 }    <span class="hljs-comment">// Púrpura oscuro</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> BEIGE      (Color){ 211, 176, 131, 255 }   <span class="hljs-comment">// Beige</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> BROWN      (Color){ 127, 106, 79, 255 }    <span class="hljs-comment">// Marrón</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> DARKBROWN  (Color){ 76, 63, 47, 255 }      <span class="hljs-comment">// Marrón oscuro</span></span>
+
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> WHITE      (Color){ 255, 255, 255, 255 }   <span class="hljs-comment">// Blanco</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> BLACK      (Color){ 0, 0, 0, 255 }         <span class="hljs-comment">// Negro</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> BLANK      (Color){ 0, 0, 0, 0 }           <span class="hljs-comment">// Transparente</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> MAGENTA    (Color){ 255, 0, 255, 255 }     <span class="hljs-comment">// Magenta</span></span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> RAYWHITE   (Color){ 245, 245, 245, 255 }   <span class="hljs-comment">// Blanco raylib (logo)</span></span>
+</code></pre></div>
+                </div>
+            </div>
+
+            <p>Otras cheatsheets:</p>
+            <ul>
+                <li>
+                    <a href="https://www.raylib.com/cheatsheet/raymath_cheatsheet.html">raymath cheatsheet (inglés)</a>
+                </li>
+            </ul>
+
+            <div id="copyright">
+                <p><a href="https://librecounter.org/referer/show" target="_blank"><img src="raylib%20-%20cheatsheet_archivos/counter.svg" referrerpolicy="unsafe-url" alt="librecounter" width="20"></a></p>
+                <p>raylib quick reference card - Copyright (c) 2013-2025 Ramon Santamaria (<a href="https://www.twitter.com/raysan5">@raysan5</a>)</p>
+                <p style="color:#c55757; font-weight:bold;">Traducción al español de comentarios - v1.0</p>
+            </div>
+        </div>
+</body></html>
